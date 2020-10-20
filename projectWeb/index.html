@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Thư Viện</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+</head>
+<body>
+    <header>
+        <div class="gtvt"><img src="./img/main-logo.png"></div>
+    </header>
+    <div class="">
+      <ul class="nav nav-pills nav-bar" role="tablist">
+        <li class="logo">
+            <a href="">Logo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#qls">Quản lý sách</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="pill" href="#qlmt">Quản lý mượn - trả sách</a>
+        </li>
+      </ul>
+        <div class="tab-content content">
+          <div id="qls" class="container tab-pane fade"><br>
+            <div class="flex">
+              <div class="form-1">
+                <div class="tts">Thông tin sách</div>
+                <div class="tt">Mã sách: <span class="ip"><input placeholder="Nhập mã sách"></span></div>
+                <div class="tt">Tên sách: <span class="ip"><input placeholder="Nhập tên sách"></span></div>
+                <div class="tt">Tên tác giả: <span class="ip"><input placeholder="Nhập tên tác giả"></span></div>
+                <div class="tt">Thể loại: 
+                  <select class="sl">
+                    <option>Thanh Tùng</option>
+                    <option>Mộc Châu</option>
+                    <option>Sơn La</option>
+                  </select>
+                </div>
+                <div class="tt">Năm xuất bản: <span class="ip"><input placeholder="Nhập tên tác giả"></span></div>
+                <div class="tt">Số lượng: <span class="ip"><input placeholder="Nhập số lượng sách"></span></div>
+                <div class="bt"><button type="button" class="btn btn-outline-danger">Tìm Kiếm</button></div>
+              </div>
+                <div class="form-2">
+                  <div class="tts">Danh mục sách</div>
+                  <div>
+                    <table border="1" cellspacing="0">
+                      <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div id="qlmt" class="container tab-pane fade"><br>
+            <div class="flex">
+              <div class="form-1"></div>
+              <div class="form-2"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    
+</body>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</html>

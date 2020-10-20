@@ -1,0 +1,25 @@
+.nav-bar{
+    width: 100%;
+    background-color: #feef78;
+}
+ul li{
+    display: inline-block;
+}
+.nav-link{
+    color: #fa6166 !important;
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+.nav-pills .nav-link.active{
+    background-color: #fa6166;
+    color: #feef78 !important;
+}
+.nav-pills .nav-link{
+    border-radius: 3rem;
+}
+.logo{
+    margin-left: 3.25rem;
+    margin-right: 3rem;
+}
