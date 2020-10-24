@@ -18,14 +18,14 @@
             <a href="">Logo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#qls">Quản lý sách</a>
+          <a class="nav-link active" data-toggle="pill" href="#qls">Quản lý sách</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="pill" href="#qlmt">Quản lý mượn - trả sách</a>
         </li>
       </ul>
         <div class="tab-content content">
-          <div id="qls" class="container tab-pane fade"><br>
+          <div id="qls" class="tab-pane pane active"><br>
             <div class="flex">
               <div class="form-1">
                 <div class="tts">Thông tin sách</div>
@@ -34,33 +34,40 @@
                 <div class="tt">Tên tác giả: <span class="ip"><input placeholder="Nhập tên tác giả"></span></div>
                 <div class="tt">Thể loại: 
                   <select class="sl">
-                    <option>Thanh Tùng</option>
-                    <option>Mộc Châu</option>
-                    <option>Sơn La</option>
+                    <option>Giáo trình</option>
+                    <option>Chính trị - Pháp luật</option>
+                    <option>Khoa học - Công nghệ</option>
+                    <option>Kinh tế</option>
+                    <option>Truyện - Tiểu thuyết</option>
+                    <option>Tâm lý</option>
+                    <option>Tâm linh - Tôn giáo</option>
                   </select>
                 </div>
-                <div class="tt">Năm xuất bản: <span class="ip"><input placeholder="Nhập tên tác giả"></span></div>
+                <div class="tt">Năm xuất bản: <span class="ip"><input placeholder="Nhập năm xuất bản"></span></div>
                 <div class="tt">Số lượng: <span class="ip"><input placeholder="Nhập số lượng sách"></span></div>
-                <div class="bt"><button type="button" class="btn btn-outline-danger">Tìm Kiếm</button></div>
+                <div class="bt"><button type="button" class="btn btn-outline-danger">Thêm mới</button></div>
               </div>
                 <div class="form-2">
                   <div class="tts">Danh mục sách</div>
                   <div>
                     <table border="1" cellspacing="0">
                       <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
+                        <th class="td1">STT</th>
+                        <th class="td2">Mã sách</th>
+                        <th class="td3">Tên sách</th>
+                        <th class="td4">Tên tác giả</th>
+                        <th class="td5">Thể loại</th>
+                        <th class="td6">NXB</th>
+                        <th class="td7">SL</th>
                       </tr>
                       <tr>
-                        <td>4</td>
-                        <td>5</td>
-                        <td>6</td>
-                      </tr>
-                      <tr>
-                        <td>7</td>
-                        <td>8</td>
-                        <td>9</td>
+                        <td class="td1"></td>
+                        <td class="td2"></td>
+                        <td class="td3"></td>
+                        <td class="td4"></td>
+                        <td class="td5"></td>
+                        <td class="td6">1999</td>
+                        <td class="td7"></td>
                       </tr>
                     </table>
                   </div>

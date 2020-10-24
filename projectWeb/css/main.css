@@ -20,9 +20,10 @@ header{
     height: 29.1rem;
     box-shadow: 0rem 0rem 1rem #feef78;
     border: 1px solid #feef78;
+    margin-left: 5rem;
 }
 .form-2{
-    width: 35rem;
+    width: 48rem;
     height: 15rem;
     box-shadow: 0rem 0rem 1rem #feef78;
     border: 1px solid #feef78;
@@ -61,7 +62,7 @@ section, option{
 }
 .sl{
     float: right;
-    margin-right: 16.5rem;
+    margin-right: 13rem;
 }
 .ip{
     float: right;
@@ -81,10 +82,31 @@ input, select {
 }
 table, tr, td{
     border: 1px solid #feef78;
-    padding: 0.5rem 5rem 0.5rem 5rem;
+    padding: 0.1rem 1.25rem 0.1rem 1.25rem;
 }
 table{
     margin-left: 0.75rem;
+}
+.td1{
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+}
+.td7{
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+}
+.td2{
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+}
+.td5{
+    padding: 0.1rem 2rem 0.1rem 2rem !important;
+}
+.td6{
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+}
+.td3{
+    padding: 0.1rem 4rem 0.1rem 4rem;
+}
+.td4{
+    padding: 0.1rem 4rem 0.1rem 4rem;
 }
 
 
