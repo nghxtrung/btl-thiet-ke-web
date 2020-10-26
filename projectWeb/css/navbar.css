@@ -9,8 +9,8 @@ ul li{
     color: #271756 !important;
     font-weight: bold;
     font-size: 1.25rem;
-    padding-left: 3rem !important;
-    padding-right: 3rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
 }
 .nav-pills .nav-link.active{
     background-color: transparent;
@@ -22,16 +22,16 @@ ul li{
     border-radius: 3rem;
 }
 .logo{
-    margin-left: 3.25rem;
-    margin-right: 2.5rem;
+    margin-left: 0rem;
+    margin-right: 0rem;
 }
 ul .logo{
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 ul .logo:hover{
     background-color: #fa6166;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     border-radius: 3rem;
 }
