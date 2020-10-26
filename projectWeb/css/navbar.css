@@ -13,13 +13,25 @@ ul li{
     padding-right: 3rem !important;
 }
 .nav-pills .nav-link.active{
+    background-color: transparent;
+}
+.nav-pills .nav-link:hover{
     background-color: #fa6166;
-    color: #271756 !important;
 }
 .nav-pills .nav-link{
     border-radius: 3rem;
 }
 .logo{
     margin-left: 3.25rem;
-    margin-right: 3rem;
+    margin-right: 2.5rem;
+}
+ul .logo{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+ul .logo:hover{
+    background-color: #fa6166;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 3rem;
 }

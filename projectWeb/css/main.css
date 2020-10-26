@@ -28,11 +28,18 @@ header{
     background-color: #eeefef;
 }
 .form-2{
-    width: 48rem;
+    width: 56rem;
     height: 15rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
-    margin-left: 2rem;
+    margin-left: 1rem;
+}
+.form-2b{
+    width: 68.5rem;
+    height: 15rem;
+    box-shadow: 0rem 0rem 1rem black;
+    background-color: #eeefef;
+    margin-left: 1rem;
 }
 .gtvt{
     margin-top: 1rem;
@@ -117,6 +124,12 @@ table{
 }
 .td2{
     padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+}
+.td2b{
+    padding: 0.1rem 1.25rem 0.1rem 1.25rem !important;
+}
+.td2c{
+    padding: 0.1rem 1.75rem 0.1rem 1.75rem !important;
 }
 .td5{
     padding: 0.1rem 2rem 0.1rem 2rem !important;
