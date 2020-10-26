@@ -6,7 +6,7 @@ ul li{
     display: inline-block;
 }
 .nav-link{
-    color: #fa6166 !important;
+    color: #271756 !important;
     font-weight: bold;
     font-size: 1.25rem;
     padding-left: 3rem !important;
@@ -14,7 +14,7 @@ ul li{
 }
 .nav-pills .nav-link.active{
     background-color: #fa6166;
-    color: #feef78 !important;
+    color: #271756 !important;
 }
 .nav-pills .nav-link{
     border-radius: 3rem;

@@ -16,17 +16,22 @@ header{
     color: white;
 }
 .form-1{
-    width: 35rem;
+    width: 29rem;
     height: 29.1rem;
-    box-shadow: 0rem 0rem 1rem #feef78;
-    border: 1px solid #feef78;
-    margin-left: 5rem;
+    box-shadow: 0rem 0rem 1rem black;
+    background-color: #eeefef;
+}
+.form-1b{
+    width: 29rem;
+    height: 32rem;
+    box-shadow: 0rem 0rem 1rem black;
+    background-color: #eeefef;
 }
 .form-2{
     width: 48rem;
     height: 15rem;
-    box-shadow: 0rem 0rem 1rem #feef78;
-    border: 1px solid #feef78;
+    box-shadow: 0rem 0rem 1rem black;
+    background-color: #eeefef;
     margin-left: 2rem;
 }
 .gtvt{
@@ -36,12 +41,14 @@ header{
 .flex{
     display: flex;
 }
-.content{
-    background-image: linear-gradient(#fa6166, pink);
-}
-input{
+.input1{
     border-radius: 10rem;
-    width: 20rem;
+    width: 18rem;
+    padding: 0.25rem 0 0.25rem 1rem !important;
+}
+.input2{
+    border-radius: 10rem;
+    width: 16.5rem;
     padding: 0.25rem 0 0.25rem 1rem !important;
 }
 section, option{
@@ -51,22 +58,27 @@ section, option{
     font-size: 1.5rem;
     font-weight: bold;
     font-style: italic;
-    color:  #feef78 ;
+    color: #271756;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 .tt{
-    color:  #feef78 ;
+    color:  #271756 ;
+    font-weight: bold;
     margin-bottom: 2rem;
-    margin-left: 3rem;
+    margin-left: 1.5rem;
 }
 .sl{
     float: right;
-    margin-right: 13rem;
+    margin-right: 10rem;
 }
 .ip{
     float: right;
-    margin-right: 3rem;
+    margin-right: 2rem;
+}
+.ipd{
+    float: right;
+    margin-right: 9rem;
 }
 input, select { 
     border:1px solid #ced6e9; 
@@ -77,11 +89,16 @@ input, select {
 .bt{
     text-align: center;
 }
+.btn-outline-danger{
+    border-color: #271756 !important;
+    color: #271756 !important;
+}
 .btn-outline-danger:hover{
     color: #feef78 !important;
+    background-color: #271756 !important;
 }
 table, tr, td{
-    border: 1px solid #feef78;
+    border: 1px solid #271756;
     padding: 0.1rem 1.25rem 0.1rem 1.25rem;
 }
 table{
@@ -107,6 +124,20 @@ table{
 }
 .td4{
     padding: 0.1rem 4rem 0.1rem 4rem;
+}
+th, td{
+    color: #271756;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+    margin-top: -46rem;
+    z-index: 100;
+}
+.logo{
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding-top: 0.35rem;
 }
 
 
