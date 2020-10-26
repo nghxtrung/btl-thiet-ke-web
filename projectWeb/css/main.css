@@ -51,6 +51,11 @@ header{
     width: 16.5rem;
     padding: 0.25rem 0 0.25rem 1rem !important;
 }
+.content{
+    padding-top: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
 section, option{
     border-radius: 10rem;
 }
@@ -128,16 +133,21 @@ table{
 th, td{
     color: #271756;
 }
-.flex-center{
+/* .flex-center{
     display: flex;
     justify-content: center;
     margin-top: -46rem;
     z-index: 100;
-}
+} */
 .logo{
     font-weight: bold;
     font-size: 1.25rem;
     padding-top: 0.35rem;
+}
+.imggg{
+    background-image: url(../img/alfons-morales-YLSwjSy7stw-unsplash.jpg);
+    background-size: 100% 100%;
+    opacity: 0.8;
 }
 
 
