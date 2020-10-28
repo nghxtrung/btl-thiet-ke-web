@@ -152,7 +152,7 @@ function luuDms()
     <th class="td5">Thể loại</th>
     <th class="td6">NXB</th>
     <th class="td7">SL</th>
-    <th class="td5">Thao tác</th>
+    <th class="td8">Thao tác</th>
     </tr>`;
     dms.forEach(function(sach,stt){
         let id = stt;
@@ -165,7 +165,7 @@ function luuDms()
         <td class="td5">${sach.tl}</td>
         <td class="td6">${sach.nxb}</td>
         <td class="td7">${sach.sl}</td>
-        <td class="td5">
+        <td class="td8">
             <a href="#">Sửa</a> | <a href="#" onclick='xoasach(${id})'>Xóa</a>
         </td>
         </tr>`;

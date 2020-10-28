@@ -18,26 +18,30 @@ header{
 }
 .form-1{
     width: 29rem;
-    height: 29.1rem;
+    height: 100%;
+    padding-bottom: 3rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
 }
 .form-1b{
     width: 29rem;
-    height: 29rem;
+    height: 100%;
+    padding-bottom: 3rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
 }
 .form-2{
-    width: 56rem;
-    height: 15rem;
+    width: 58rem;
+    height: 100%;
+    padding-bottom: 4rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
     margin-left: 1rem;
 }
 .form-2b{
-    width: 56rem;
-    height: 15rem;
+    width: 58rem;
+    height: 100%;
+    padding-bottom: 4rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
     margin-left: 1rem;
@@ -115,34 +119,84 @@ table, tr, td{
     padding: 0.1rem 1.25rem 0.1rem 1.25rem;
 }
 table{
-    margin-left: 0.75rem;
+    display: flex;
+    justify-content: center;
+    border: none;
 }
 .td1{
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
-}
-.td7{
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 2.5rem;
 }
 .td2{
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
-}
-.td2b{
-    padding: 0.1rem 1.25rem 0.1rem 1.25rem !important;
-}
-.td2c{
-    padding: 0.1rem 1.75rem 0.1rem 1.75rem !important;
-}
-.td5{
-    padding: 0.1rem 2rem 0.1rem 2rem !important;
-}
-.td6{
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem !important;
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 8rem;
 }
 .td3{
-    padding: 0.1rem 4rem 0.1rem 4rem;
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 10rem;
 }
 .td4{
-    padding: 0.1rem 4rem 0.1rem 4rem;
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 10rem;
+}
+.td5{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 10rem;
+}
+.td6{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 5rem;
+}
+.td7{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 3rem;
+}
+.td8{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 8rem;
+}
+.td2b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 9rem;
+}
+.td3b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 9rem;
+}
+.td4b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 8rem;
+}
+.td5b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 9rem;
+}
+.td6b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 9rem;
+}
+.td7b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 3rem;
+}
+.td8b{
+    padding: 0.1rem 0 0.1rem 0;
+    text-align: center;
+    width: 9rem;
 }
 th, td{
     color: #271756;
