@@ -13,13 +13,13 @@ function themsach()
     if(_.isEmpty(masach))
     {
         document.getElementById('masach').classList.add('invalid');
-        document.getElementById('ms-error').innerHTML = 'Vui lòng nhập mã sách';
+        document.getElementById('ms-error').innerHTML = 'Vui lòng không bỏ trống';
     }
     else if(msValidate.test(masach.trim())===false)
     {
         masach = '';
         document.getElementById('masach').classList.add('invalid');
-        document.getElementById('ms-error').innerHTML = 'Vui lòng nhập mã sách 8 kí tự gồm chữ và số';
+        document.getElementById('ms-error').innerHTML = 'Vui lòng nhập 8 kí tự gồm chữ và số';
     }
     else
     {
@@ -32,13 +32,13 @@ function themsach()
     if(_.isEmpty(tensach))
     {
         document.getElementById('tensach').classList.add('invalid');
-        document.getElementById('ts-error').innerHTML = 'Vui lòng nhập tên sách';
+        document.getElementById('ts-error').innerHTML = 'Vui lòng không bỏ trống';
     }
     else if(tsValidate.test(tensach.trim()))
     {
         tensach = '';
         document.getElementById('tensach').classList.add('invalid');
-        document.getElementById('ts-error').innerHTML = 'Vui lòng nhập tên sách đúng định dạng';
+        document.getElementById('ts-error').innerHTML = 'Vui lòng nhập đúng định dạng';
     }
     else
     {
@@ -51,13 +51,13 @@ function themsach()
     if(_.isEmpty(tentacgia))
     {
         document.getElementById('tentacgia').classList.add('invalid');
-        document.getElementById('ttg-error').innerHTML = 'Vui lòng nhập tên tác giả';
+        document.getElementById('ttg-error').innerHTML = 'Vui lòng không bỏ trống';
     }
     else if(ttgValidate.test(tentacgia.trim()))
     {
         tentacgia = ''
         document.getElementById('tentacgia').classList.add('invalid');
-        document.getElementById('ttg-error').innerHTML = 'Vui lòng nhập tên tác giả đúng định dạng';
+        document.getElementById('ttg-error').innerHTML = 'Vui lòng nhập đúng định dạng';
     }
     else
     {
@@ -82,13 +82,13 @@ function themsach()
     if(_.isEmpty(namxuatban))
     {
         document.getElementById('namxuatban').classList.add('invalid');
-        document.getElementById('nxb-error').innerHTML = 'Vui lòng nhập năm xuất bản';
+        document.getElementById('nxb-error').innerHTML = 'Vui lòng không bỏ trống';
     }
     else if(nxbValidate.test(namxuatban.trim())===false||namxuatban.trim()<=1900||namxuatban.trim()>=2020)
     {
         namxuatban = '';
         document.getElementById('namxuatban').classList.add('invalid');
-        document.getElementById('nxb-error').innerHTML = 'Vui lòng nhập năm xuất bản đúng định dạng';
+        document.getElementById('nxb-error').innerHTML = 'Vui lòng nhập đúng định dạng';
     }
     else
     {
@@ -101,19 +101,19 @@ function themsach()
     if(_.isEmpty(soluong))
     {
         document.getElementById('soluong').classList.add('invalid');
-        document.getElementById('sl-error').innerHTML = 'Vui lòng nhập số lượng';
+        document.getElementById('sl-error').innerHTML = 'Vui lòng không bỏ trống';
     }
     else if(soluong.trim()<=0)
     {
         soluong = '';
         document.getElementById('soluong').classList.add('invalid');
-        document.getElementById('sl-error').innerHTML = 'Vui lòng nhập số lượng lớn hơn 0';
+        document.getElementById('sl-error').innerHTML = 'Vui lòng nhập số lớn hơn 0';
     }
     else if(slValidate.test(soluong.trim())===false)
     {
         soluong = '';
         document.getElementById('soluong').classList.add('invalid');
-        document.getElementById('sl-error').innerHTML = 'Vui lòng nhập số lượng đúng định dạng';
+        document.getElementById('sl-error').innerHTML = 'Vui lòng nhập đúng định dạng';
     }
     else
     {
@@ -154,6 +154,7 @@ function luuDms()
     <th class="td7">SL</th>
     <th class="td8">Thao tác</th>
     </tr>`;
+    let chonMs = `<option value="" disabled selected>Chọn mã sách</option>`;
     dms.forEach(function(sach,stt){
         let id = stt;
         ++stt;
@@ -169,8 +170,10 @@ function luuDms()
             <a href="#">Sửa</a> | <a href="#" onclick='xoasach(${id})'>Xóa</a>
         </td>
         </tr>`;
+        chonMs += `<option>${sach.ms}</option>`;
     });
     document.getElementById('dms').innerHTML = bangDms;
+    document.getElementById('masachmuon').innerHTML = chonMs;
 }
 
 function xoasach(id)

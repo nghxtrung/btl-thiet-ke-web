@@ -85,9 +85,13 @@ section, option{
     margin-bottom: 2rem;
     margin-left: 1.5rem;
 }
-.sl{
+.sl1{
     float: right;
     margin-right: 8rem;
+}
+.sl2{
+    float: right;
+    margin-right: 9.3rem;
 }
 .ip{
     float: right;

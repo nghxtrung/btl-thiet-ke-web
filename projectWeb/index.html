@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
 </head>
-<body onload="luuDms()">
+<body onload="loadData()">
     <header>
         <div class="gtvt"><img src="./img/main-logo.png"></div>
     </header>
@@ -35,7 +35,7 @@
                 <div class="tt">Tên tác giả: <span class="ip"><input class="input1" placeholder="Nhập tên tác giả" id="tentacgia"><br><span class="error" id="ttg-error"></span></span></div>
                 <div class="tt">Thể loại:
                   <span class="ip">
-                    <select class="sl" id="theloai">
+                    <select class="sl1" id="theloai">
                       <option value="" disabled selected>Chọn thể loại</option>
                       <option>Giáo trình</option>
                       <option>Chính trị - Pháp luật</option>
@@ -79,17 +79,24 @@
               <div class="form-1b">
                 <div class="tts">Danh mục mượn - trả sách</div>
                 <div class="tt">Mã phiếu mượn: <span class="ip"><input  class="input2" placeholder="Nhập mã phiếu mượn sách" id="maphieumuon"><br><span class="error" id="mpm-error"></span></span></div>
-                <div class="tt">Mã sách: <span class="ip"><input  class="input2" placeholder="Nhập mã sách" id='masachmuon'></span></div>
-                <div class="tt">Mã sinh viên: <span class="ip"><input  class="input2" placeholder="Nhập mã sinh viên" id="masinhvien"></span></div>
-                <div class="tt">Ngày mượn: <span class="ipd"><input type="date" id="ngaymuon"></span></div>
-                <div class="tt">Ngày trả: <span class="ipd"><input type="date" id="ngaytra"></span></div>
-                <div class="tt">Số lượng mượn: <span class="ip"><input  class="input2" placeholder="Nhập số lượng sách mượn" id="soluongmuon"></span></div>
+                <div class="tt">Mã sách: 
+                  <span class="ip">
+                    <select class="sl2" id="masachmuon">
+                      <option value="" disabled selected>Chọn mã sách</option>
+                    </select>
+                    <br><span class="error" id="msm-error"></span>
+                  </span>
+                </div>
+                <div class="tt">Mã sinh viên: <span class="ip"><input  class="input2" placeholder="Nhập mã sinh viên" id="masinhvien"><br><span class="error" id="msv-error"></span></span></div>
+                <div class="tt">Ngày mượn: <span class="ipd"><input type="date" id="ngaymuon"><br><span class="error" id="ngm-error"></span></span></div>
+                <div class="tt">Ngày trả: <span class="ipd"><input type="date" id="ngaytra"><br><span class="error" id="ngtr-error"></span></span></div>
+                <div class="tt">Số lượng mượn: <span class="ip"><input  class="input2" placeholder="Nhập số lượng sách mượn" id="soluongmuon"><br><span class="error" id="slm-error"></span></span></div>
                 <div class="bt"><button type="button" class="btn btn-outline-danger" onclick="themmt()">Thêm mới</button></div>
              </div>
              <div class="form-2b">
               <div class="tts">Danh mục mượn - trả sách</div>
               <div>
-                <table border="1" cellspacing="0">
+                <table border="1" cellspacing="0" id="dmmt">
                   <tr>
                     <th class="td1">STT</th>
                     <th class="td2b">Mã phiếu mượn</th>
@@ -101,14 +108,7 @@
                     <th class="td8b">Thao tác</th>
                   </tr>
                   <tr>
-                    <td class="td1b"></td>
-                    <td class="td2b"></td>
-                    <td class="td3b"></td>
-                    <td class="td4b"></td>
-                    <td class="td5b">06/02/2001</td>
-                    <td class="td6b"></td>
-                    <td class="td7b"></td>
-                    <td class="td8b"></td>
+                    <td colspan="8">Không tìm thấy dữ liệu</td>
                   </tr>
                 </table>
               </div>
@@ -129,4 +129,11 @@
 <script src='https://cdn.jsdelivr.net/g/lodash@4(lodash.min.js+lodash.fp.min.js)'></script>
 <script src="./js/qls/main.js"></script>
 <script src="./js/qlmt/main.js"></script>
+<script>
+  function loadData()
+  {
+    luuDms();
+    luuDmmt();
+  }
+</script>
 </html>
