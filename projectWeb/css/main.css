@@ -215,6 +215,7 @@ table{
 }
 th, td{
     color: #271756;
+    text-align: center;
 }
 /* .flex-center{
     display: flex;
@@ -230,7 +231,6 @@ th, td{
 .imggg{
     background-image: url(../img/background.jpg);
     background-size: 100% 100%;
-
 }
 .error{
     color: red;
@@ -242,4 +242,8 @@ th, td{
 }
 #ngm-error, #ngtr-error{
     margin-left: 9rem;
+}
+.chuc-nang,
+.chuc-nang:hover{
+    color: #271756;;
 }
