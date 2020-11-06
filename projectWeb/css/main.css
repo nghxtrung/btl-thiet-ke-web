@@ -22,6 +22,7 @@ header{
     padding-bottom: 3rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
+    opacity: 90%;
 }
 .form-1b{
     width: 29rem;
@@ -29,6 +30,7 @@ header{
     padding-bottom: 3rem;
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
+    opacity: 90%;
 }
 .form-2{
     width: 58rem;
@@ -37,6 +39,7 @@ header{
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
     margin-left: 1rem;
+    opacity: 90%;
 }
 .form-2b{
     width: 58rem;
@@ -45,6 +48,7 @@ header{
     box-shadow: 0rem 0rem 1rem black;
     background-color: #eeefef;
     margin-left: 1rem;
+    opacity: 90%;
 }
 .gtvt{
     margin-top: 1rem;
