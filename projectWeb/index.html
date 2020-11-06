@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Thư Viện</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
@@ -50,9 +51,30 @@
                 <div class="tt">Năm xuất bản: <span class="ip"><input class="input1" placeholder="Nhập năm xuất bản" id="namxuatban"><br><span class="error" id="nxb-error"></span></span></div>
                 <div class="tt">Số lượng: <span class="ip"><input class="input1" placeholder="Nhập số lượng sách" id="soluong"><br><span class="error" id="sl-error"></span></div>
                 <div class="bt"><button type="button" class="btn btn-outline-danger" id="nut1" onclick="themsach()">Thêm mới</button></div>
+                <span class="sync"><i class="fas fa-sync-alt"></i></span>
               </div>
                 <div class="form-2">
                   <div class="tts">Danh mục sách</div>
+                  <div>
+                    <div style="text-align: center; margin: -1.5rem 0 1rem 0;">
+                      <input class="input3" placeholder="Tìm kiếm theo mã sách, Tên sách & Tên tác giả">
+                      <span style="margin-left: 0.25rem;">
+                        <select class="select1">
+                          <option value="" disabled selected>Lọc theo thể loại</option>
+                          <option>Giáo trình</option>
+                          <option>Chính trị - Pháp luật</option>
+                          <option>Khoa học - Công nghệ</option>
+                          <option>Kinh tế</option>
+                          <option>Truyện - Tiểu thuyết</option>
+                          <option>Tâm lý</option>
+                          <option>Tâm linh - Tôn giáo</option>
+                        </select>
+                      </span>
+                      <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger">Tìm kiếm</button></span>
+                      <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger">Tải xuống</button></span>
+                      
+                    </div>
+                  </div>
                   <div>
                     <table border="1" cellspacing="0" id="dms">
                       <tr>
@@ -91,9 +113,30 @@
                 <div class="tt2">Ngày trả: <span class="ipd2"><input type="date" id="ngaytra"><br><span class="error" id="ngtr-error"></span></span></div>
                 <div class="tt">Số lượng mượn: <span class="ip"><input  class="input2" placeholder="Nhập số lượng sách mượn" id="soluongmuon"><br><span class="error" id="slm-error"></span></span></div>
                 <div class="bt"><button type="button" class="btn btn-outline-danger" id="nut2" onclick="themmt()">Thêm mới</button></div>
+                <span class="sync"><i class="fas fa-sync-alt"></i></span>
              </div>
              <div class="form-2b">
               <div class="tts">Danh mục mượn - trả sách</div>
+              <div>
+                <div style="text-align: center; margin: -1.5rem 0 1rem 0;">
+                  <input class="input3" placeholder="Tìm kiếm theo mã sách, Tên sách & Tên tác giả">
+                  <span style="margin-left: 0.25rem;">
+                    <select class="select1">
+                      <option value="" disabled selected>Lọc theo thể loại</option>
+                      <option>Giáo trình</option>
+                      <option>Chính trị - Pháp luật</option>
+                      <option>Khoa học - Công nghệ</option>
+                      <option>Kinh tế</option>
+                      <option>Truyện - Tiểu thuyết</option>
+                      <option>Tâm lý</option>
+                      <option>Tâm linh - Tôn giáo</option>
+                    </select>
+                  </span>
+                  <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger">Tìm kiếm</button></span>
+                  <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger">Tải xuống</button></span>
+                  
+                </div>
+              </div>
               <div>
                 <table border="1" cellspacing="0" id="dmmt">
                   <tr>
