@@ -293,7 +293,7 @@ function luuDmmt()
         <td class="td6">${mt.ngtr}</td>
         <td class="td7">${mt.slm}</td>
         <td class="td8">
-            <a class="chuc-nang" href="javascript:void(0)" onclick='suamt(${id})'>Sửa</a> | <a class="chuc-nang" href="javascript:void(0)" onclick='xoamt(${id})'>Xóa</a>
+            <a class="action" href="javascript:void(0)" onclick='suamt(${id})'>Sửa</a> | <a class="action" href="javascript:void(0)" onclick='xoamt(${id})'>Xóa</a>
         </td>
         </tr>`
     });

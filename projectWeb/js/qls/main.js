@@ -345,7 +345,7 @@ function luuDms()
         <td class="td6">${sach.nxb}</td>
         <td class="td7">${sach.sl}</td>
         <td class="td8">
-            <a class="chuc-nang" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="chuc-nang" href="javascript:void(0)" onclick='xoasach(${id})'>Xóa</a>
+            <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick='xoasach(${id})'>Xóa</a>
         </td>
         </tr>`;
         chonMs += `<option>${sach.ms}</option>`;

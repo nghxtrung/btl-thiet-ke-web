@@ -247,7 +247,7 @@ th, td{
 #ngm-error, #ngtr-error{
     margin-left: 9rem;
 }
-.chuc-nang,
-.chuc-nang:hover{
+.action,
+.action:hover{
     color: #271756;;
 }
