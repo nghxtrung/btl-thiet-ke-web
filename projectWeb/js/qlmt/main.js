@@ -508,80 +508,274 @@ function capnhatmt(id)
 
 function timkiemmt()
 {
-    let tk = document.getElementById('timkiemmt').value;
-    let thoigian = document.getElementById('loctg').value;
-    let kq = [];
     let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
-    let tg = localStorage.getItem('tg') ? JSON.parse(localStorage.getItem('tg')) : [];
-    let tght = Date.now();
-    dmmt.forEach(function(mt,sttmt)
+    if(dmmt.length===0)
     {
-        if(thoigian==='Tất cả')
-        {
-            if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
-                kq.push(mt);
-        }
-        else if(thoigian==='Còn hạn')
-        {
-            let key;
-            tg.forEach(function(tg,stttg)
-            {
-                tg.tra = new Date(`${tg.tra}`);
-                if(tg.tra.getTime()<=tght)
-                    key=stttg;
-            });
-            if(sttmt===key)
-            {
-                if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
-                    kq.push(mt);
-            }
-        }
-        else if(thoigian==='Quá hạn')
-        {
-            let key;
-            tg.forEach(function(tg,stttg)
-            {
-                tg.tra = new Date(`${tg.tra}`);
-                if(tg.tra.getTime()>tght)
-                    key=stttg;
-            });
-            if(sttmt===key)
-            {
-                if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
-                    kq.push(mt);
-            }
-        }
-    });
-    let bangkq = `<th class="td1">STT</th>
-    <th class="td2b">Mã phiếu mượn</th>
-    <th class="td3b">Mã sách</th>
-    <th class="td4b">Mã sinh viên</th>
-    <th class="td5b">Ngày mượn</th>
-    <th class="td6b">Ngày trả</th>
-    <th class="td7b">SL</th>
-    <th class="td8b">Thao tác</th>`;
-    if(kq.length === 0)
-    {
-        bangkq += `<tr>
-        <td colspan="8">Không tìm thấy dữ liệu</td>
-        </tr>`;
+        alert("Chức năng này hiện không khả dụng do chưa có dữ liệu! Vui lòng nhập liệu trước khi sử dụng!");
     }
-    kq.forEach(function(mt,stt)
+    else
     {
-        let id = stt;
-        ++stt;
-        bangkq += `<tr>
-        <td class="td1">${stt}</td>
-        <td class="td2">${mt.mpm}</td>
-        <td class="td3">${mt.msm}</td>  
-        <td class="td4">${mt.msv}</td>
-        <td class="td5">${mt.ngm}</td>
-        <td class="td6">${mt.ngtr}</td>
-        <td class="td7">${mt.slm}</td>
-        <td class="td8">
-            <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
-        </td>
-        </tr>`
-    });
-    document.getElementById('dmmt').innerHTML = bangkq;
+        let tk = document.getElementById('timkiemmt').value;
+        let thoigian = document.getElementById('loctg').value;
+        let kq1 = [];
+        let kq2 = [];
+        let kq3 = [];
+        let tght = Date.now();
+        let tg = localStorage.getItem('tg') ? JSON.parse(localStorage.getItem('tg')) : [];
+        dmmt.forEach(function(mt,sttmt)
+        {
+            if(thoigian==='Lọc theo thời gian'||thoigian==='Tất cả')
+            {
+                if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                    kq1.push(mt);
+            }
+            else if(thoigian==='Còn hạn')
+            {
+                let key;
+                tg.forEach(function(tg,stttg)
+                {
+                    tg.tra = new Date(`${tg.tra}`);
+                    if(tg.tra.getTime()>=tght)
+                    {
+                        key=stttg;
+                        if(sttmt===key)
+                        {
+                            if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                                kq2.push(mt);
+                        }
+                    }
+                });
+                
+            }
+            else if(thoigian==='Quá hạn')
+            {
+                let key;
+                tg.forEach(function(tg,stttg)
+                {
+                    tg.tra = new Date(`${tg.tra}`);
+                    if(tg.tra.getTime()<tght)
+                    {
+                        key=stttg;
+                        if(sttmt===key)
+                        {
+                            if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                                kq3.push(mt);
+                        }
+                    }
+                });
+            }
+        });
+        let bangkq = `<th class="td1">STT</th>
+        <th class="td2b">Mã phiếu mượn</th>
+        <th class="td3b">Mã sách</th>
+        <th class="td4b">Mã sinh viên</th>
+        <th class="td5b">Ngày mượn</th>
+        <th class="td6b">Ngày trả</th>
+        <th class="td7b">SL</th>
+        <th class="td8b">Thao tác</th>`;
+        if(kq1.length===0 && kq2.length===0 && kq3.length===0)
+        {
+            bangkq += `<tr>
+            <td colspan="8">Không tìm thấy dữ liệu</td>
+            </tr>`;
+            document.getElementById('dmmt').innerHTML = bangkq;
+        }
+        else if(kq1.length>0)
+        {
+            kq1.forEach(function(mt,stt)
+            {
+                let id = stt;
+                ++stt;
+                bangkq += `<tr>
+                <td class="td1">${stt}</td>
+                <td class="td2">${mt.mpm}</td>
+                <td class="td3">${mt.msm}</td>  
+                <td class="td4">${mt.msv}</td>
+                <td class="td5">${mt.ngm}</td>
+                <td class="td6">${mt.ngtr}</td>
+                <td class="td7">${mt.slm}</td>
+                <td class="td8">
+                    <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
+                </td>
+                </tr>`
+            });
+            document.getElementById('dmmt').innerHTML = bangkq;
+        }
+        else if(kq2.length>0)
+        {
+            kq2.forEach(function(mt,stt)
+            {
+                let id = stt;
+                ++stt;
+                bangkq += `<tr>
+                <td class="td1">${stt}</td>
+                <td class="td2">${mt.mpm}</td>
+                <td class="td3">${mt.msm}</td>  
+                <td class="td4">${mt.msv}</td>
+                <td class="td5">${mt.ngm}</td>
+                <td class="td6">${mt.ngtr}</td>
+                <td class="td7">${mt.slm}</td>
+                <td class="td8">
+                    <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
+                </td>
+                </tr>`
+            });
+            document.getElementById('dmmt').innerHTML = bangkq;
+        }
+        else if(kq3.length>0)
+        {
+            kq3.forEach(function(mt,stt)
+            {
+                let id = stt;
+                ++stt;
+                bangkq += `<tr>
+                <td class="td1">${stt}</td>
+                <td class="td2">${mt.mpm}</td>
+                <td class="td3">${mt.msm}</td>  
+                <td class="td4">${mt.msv}</td>
+                <td class="td5">${mt.ngm}</td>
+                <td class="td6">${mt.ngtr}</td>
+                <td class="td7">${mt.slm}</td>
+                <td class="td8">
+                    <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
+                </td>
+                </tr>`
+            });
+            document.getElementById('dmmt').innerHTML = bangkq;
+        }
+    }
+}
+
+function thoigianhientai()
+{
+    let thoigian = new Date();
+    let ngay = (thoigian.getDate()>=10) ? thoigian.getDate() : '0'+thoigian.getDate();
+    let thang = ((thoigian.getMonth()+1)>=10) ? thoigian.getMonth()+1 : '0'+(thoigian.getMonth()+1);
+    let nam = thoigian.getFullYear();
+    let gio = (thoigian.getHours()>=10) ? thoigian.getHours() : '0'+thoigian.getHours();
+    let phut = (thoigian.getMinutes()>=10) ? thoigian.getMinutes() : '0'+thoigian.getMinutes();
+    let giay = (thoigian.getSeconds()>=10) ? thoigian.getSeconds() : '0'+thoigian.getSeconds();
+    return ngay + '_' + thang + '_' + nam +  '_' + gio + phut + giay;
+}
+
+function txmt()
+{
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    if(dmmt.length===0)
+    {
+        alert("Chức năng này hiện không khả dụng do chưa có dữ liệu! Vui lòng nhập liệu trước khi sử dụng!");
+    }
+    else
+    {
+        let tk = document.getElementById('timkiemmt').value;
+        let thoigian = document.getElementById('loctg').value;
+        let kq1 = [];
+        let kq2 = [];
+        let kq3 = [];
+        let xuongdong = '\r\n';
+        let noidungcsv = `\uFEFFSTT,Mã phiếu mượn,Mã sách,Mã sinh viên,Ngày mượn,Ngày trả,Số lượng${xuongdong}`;
+        let tenfilecsv;
+        let tght = Date.now();
+        let tg = localStorage.getItem('tg') ? JSON.parse(localStorage.getItem('tg')) : [];
+        dmmt.forEach(function(mt,sttmt)
+        {
+            if(thoigian==='Lọc theo thời gian'||thoigian==='Tất cả')
+            {
+                if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                    kq1.push(mt);
+            }
+            else if(thoigian==='Còn hạn')
+            {
+                let key;
+                tg.forEach(function(tg,stttg)
+                {
+                    tg.tra = new Date(`${tg.tra}`);
+                    if(tg.tra.getTime()>=tght)
+                    {
+                        key=stttg;
+                        if(sttmt===key)
+                        {
+                            if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                                kq2.push(mt);
+                        }
+                    }
+                });
+            }
+            else if(thoigian==='Quá hạn')
+            {
+                let key;
+                tg.forEach(function(tg,stttg)
+                {
+                    tg.tra = new Date(`${tg.tra}`);
+                    if(tg.tra.getTime()<tght)
+                    {
+                        key=stttg;
+                        if(sttmt===key)
+                        {
+                            if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                                kq3.push(mt);
+                        }
+                    }
+                });
+            }
+        });
+        if(kq1.length===0 && kq2.length===0 && kq3.length===0)
+        {
+            alert("Chức năng này hiện không khả dụng do không có dữ liệu phù hợp! Vui lòng nhập và chọn lại điều kiện tìm kiếm/lọc trước khi tải file!");
+        }
+        else if(kq1.length>0)
+        {
+            let sttcuoi = kq1.length - 1;
+            tenfilecsv = `DS muon tra_${thoigianhientai()}.csv`;
+            kq1.forEach(function(kq,stt)
+            {
+                noidungcsv += `${stt + 1},${kq.mpm},${kq.msm},${kq.msv},${kq.ngm},${kq.ngtr},${kq.slm}`;
+                if(stt<sttcuoi)
+                {
+                    noidungcsv += xuongdong;
+                }
+            });
+            let linktaixuong = document.createElement('a');
+            linktaixuong.setAttribute('href','data:application/csv,' + encodeURIComponent(noidungcsv));
+            linktaixuong.setAttribute('download', tenfilecsv);
+            document.body.appendChild(linktaixuong);
+            linktaixuong.click();
+        }
+        else if(kq2.length>0)
+        {
+            let sttcuoi = kq2.length - 1;
+            tenfilecsv = `DS con han_${thoigianhientai()}.csv`;
+            kq2.forEach(function(kq,stt)
+            {
+                noidungcsv += `${stt + 1},${kq.mpm},${kq.msm},${kq.msv},${kq.ngm},${kq.ngtr},${kq.slm}`;
+                if(stt<sttcuoi)
+                {
+                    noidungcsv += xuongdong;
+                }
+            });
+            let linktaixuong = document.createElement('a');
+            linktaixuong.setAttribute('href','data:application/csv,' + encodeURIComponent(noidungcsv));
+            linktaixuong.setAttribute('download', tenfilecsv);
+            document.body.appendChild(linktaixuong);
+            linktaixuong.click();
+        }
+        else if(kq3.length>0)
+        {
+            let sttcuoi = kq3.length - 1;
+            tenfilecsv = `DS qua han_${thoigianhientai()}.csv`;
+            kq3.forEach(function(kq,stt)
+            {
+                noidungcsv += `${stt + 1},${kq.mpm},${kq.msm},${kq.msv},${kq.ngm},${kq.ngtr},${kq.slm}`;
+                if(stt<sttcuoi)
+                {
+                    noidungcsv += xuongdong;
+                }
+            });
+            let linktaixuong = document.createElement('a');
+            linktaixuong.setAttribute('href','data:application/csv,' + encodeURIComponent(noidungcsv));
+            linktaixuong.setAttribute('download', tenfilecsv);
+            document.body.appendChild(linktaixuong);
+            linktaixuong.click();
+        }
+    }
 }

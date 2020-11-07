@@ -473,50 +473,121 @@ function timkiemsach()
     let theloai = document.getElementById('loctl').value;
     let kq = [];
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-    dms.forEach(function(sach)
+    if(dms.length===0)
     {
-        if(theloai==='Tất cả')
-        {
-            if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
-                kq.push(sach);
-        }
-        else if(sach.tl.indexOf(theloai)!=-1)
-        {
-            if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
-                kq.push(sach);
-        }
-    });
-    let bangkq = `<tr>
-    <th class="td1">STT</th>
-    <th class="td2">Mã sách</th>
-    <th class="td3">Tên sách</th>
-    <th class="td4">Tên tác giả</th>
-    <th class="td5">Thể loại</th>
-    <th class="td6">NXB</th>
-    <th class="td7">SL</th>
-    <th class="td8">Thao tác</th>
-    </tr>`;
-    if(kq.length === 0)
-    {
-        bangkq += `<tr>
-        <td colspan="8">Không tìm thấy dữ liệu</td>
-        </tr>`;
+        alert("Chức năng này hiện không khả dụng do chưa có dữ liệu! Vui lòng nhập liệu trước khi sử dụng!");
     }
-    kq.forEach(function(sach,stt){
-        let id = stt;
-        ++stt;
-        bangkq += `<tr>
-        <td class="td1">${stt}</td>
-        <td class="td2">${sach.ms}</td>
-        <td class="td3">${sach.ts}</td>
-        <td class="td4">${sach.ttg}</td>
-        <td class="td5">${sach.tl}</td>
-        <td class="td6">${sach.nxb}</td>
-        <td class="td7">${sach.sl}</td>
-        <td class="td8">
-            <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoasach(${id})">Xóa</a>
-        </td>
+    else
+    {
+        dms.forEach(function(sach)
+        {
+            if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+            {
+                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                    kq.push(sach);    
+            }
+            else if(sach.tl.indexOf(theloai)!=-1)
+            {
+                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                    kq.push(sach);    
+            }
+        });
+        let bangkq = `<tr>
+        <th class="td1">STT</th>
+        <th class="td2">Mã sách</th>
+        <th class="td3">Tên sách</th>
+        <th class="td4">Tên tác giả</th>
+        <th class="td5">Thể loại</th>
+        <th class="td6">NXB</th>
+        <th class="td7">SL</th>
+        <th class="td8">Thao tác</th>
         </tr>`;
-    });
-    document.getElementById('dms').innerHTML = bangkq;
+        if(kq.length === 0)
+        {
+            bangkq += `<tr>
+            <td colspan="8">Không tìm thấy dữ liệu</td>
+            </tr>`;
+        }
+        kq.forEach(function(sach,stt){
+            let id = stt;
+            ++stt;
+            bangkq += `<tr>
+            <td class="td1">${stt}</td>
+            <td class="td2">${sach.ms}</td>
+            <td class="td3">${sach.ts}</td>
+            <td class="td4">${sach.ttg}</td>
+            <td class="td5">${sach.tl}</td>
+            <td class="td6">${sach.nxb}</td>
+            <td class="td7">${sach.sl}</td>
+            <td class="td8">
+                <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoasach(${id})">Xóa</a>
+            </td>
+            </tr>`;
+        });
+        document.getElementById('dms').innerHTML = bangkq;
+    }
+}
+
+function thoigianhientai()
+{
+    let thoigian = new Date();
+    let ngay = (thoigian.getDate()>=10) ? thoigian.getDate() : '0'+thoigian.getDate();
+    let thang = ((thoigian.getMonth()+1)>=10) ? thoigian.getMonth()+1 : '0'+(thoigian.getMonth()+1);
+    let nam = thoigian.getFullYear();
+    let gio = (thoigian.getHours()>=10) ? thoigian.getHours() : '0'+thoigian.getHours();
+    let phut = (thoigian.getMinutes()>=10) ? thoigian.getMinutes() : '0'+thoigian.getMinutes();
+    let giay = (thoigian.getSeconds()>=10) ? thoigian.getSeconds() : '0'+thoigian.getSeconds();
+    return ngay + '_' + thang + '_' + nam +  '_' + gio + phut + giay;
+}
+
+function txsach()
+{
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    if(dms.length===0)
+    {
+        alert("Chức năng này hiện không khả dụng do chưa có dữ liệu! Vui lòng nhập liệu trước khi sử dụng!");
+    }
+    else
+    {
+        let tk = document.getElementById('timkiemsach').value;
+        let theloai = document.getElementById('loctl').value;
+        let kqtx = [];
+        dms.forEach(function(sach)
+        {
+            if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+            {
+                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                    kqtx.push(sach);    
+            }
+            else if(sach.tl.indexOf(theloai)!=-1)
+            {
+                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                    kqtx.push(sach);    
+            }
+        });
+        if(kqtx.length===0)
+        {
+            alert("Chức năng này hiện không khả dụng do không có dữ liệu phù hợp! Vui lòng nhập và chọn lại điều kiện tìm kiếm/lọc trước khi tải file!");
+        }
+        else
+        {
+            let xuongdong = '\r\n';
+            let noidungcsv = `\uFEFFSTT,Mã sách,Tên sách,Tên tác giả,Thể loại,Năm xuất bản,Số lượng${xuongdong}`;
+            let tenfilecsv = `DS sach_${thoigianhientai()}.csv`;
+            let sttcuoi = kqtx.length - 1;
+            kqtx.forEach(function(kq,stt)
+            {
+                noidungcsv += `${stt + 1},${kq.ms},${kq.ts},${kq.ttg},${kq.tl},${kq.nxb},${kq.sl}`;
+                if(stt<sttcuoi)
+                {
+                    noidungcsv += xuongdong;
+                }
+            });
+            let linktaixuong = document.createElement('a'); //Thêm thẻ a
+            linktaixuong.setAttribute('href','data:application/csv,' + encodeURIComponent(noidungcsv)); //Thêm thuộc tính href có giá trị là data url, cụ thể data url ở đây là data csv và mã hóa sang chuẩn UTF-8
+            linktaixuong.setAttribute('download', tenfilecsv);  //Thêm thuộc tính download
+            document.body.appendChild(linktaixuong);    //Thêm vào cuối body của html
+            linktaixuong.click();   //Tạo hành động click
+        }
+    }
 }
