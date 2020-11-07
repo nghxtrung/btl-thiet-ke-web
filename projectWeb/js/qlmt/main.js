@@ -293,11 +293,33 @@ function luuDmmt()
         <td class="td6">${mt.ngtr}</td>
         <td class="td7">${mt.slm}</td>
         <td class="td8">
-            <a class="action" href="javascript:void(0)" onclick='suamt(${id})'>Sửa</a> | <a class="action" href="javascript:void(0)" onclick='xoamt(${id})'>Xóa</a>
+            <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
         </td>
         </tr>`
     });
     document.getElementById('dmmt').innerHTML = bangDmmt; 
+}
+
+function clearinput2()
+{
+    document.getElementById('maphieumuon').value = '';
+    document.getElementById('maphieumuon').classList.remove('invalid');
+    document.getElementById('mpm-error').innerHTML = '';
+    document.getElementById('masachmuon').value = '';
+    document.getElementById('masachmuon').classList.remove('invalid');
+    document.getElementById('msm-error').innerHTML = '';
+    document.getElementById('masinhvien').value = '';
+    document.getElementById('masinhvien').classList.remove('invalid');
+    document.getElementById('msv-error').innerHTML = '';
+    document.getElementById('ngaymuon').value = '';
+    document.getElementById('ngaymuon').classList.remove('invalid');
+    document.getElementById('ngm-error').innerHTML = '';
+    document.getElementById('ngaytra').value = '';
+    document.getElementById('ngaytra').classList.remove('invalid');
+    document.getElementById('ngtr-error').innerHTML = '';
+    document.getElementById('soluongmuon').value = '';
+    document.getElementById('soluongmuon').classList.remove('invalid');
+    document.getElementById('slm-error').innerHTML = '';
 }
 
 function xoamt(id)
@@ -328,6 +350,7 @@ function xoamt(id)
     luuDmmt();
     tg.splice(id,1);
     localStorage.setItem('tg',JSON.stringify(tg));
+    clearinput2();
 }
 
 function suamt(id)
@@ -480,4 +503,84 @@ function capnhatmt(id)
             document.getElementById('nut2').innerHTML = 'Thêm mới';
         }
     }
+}
+
+function timkiemmt()
+{
+    let tk = document.getElementById('timkiemmt').value;
+    let thoigian = document.getElementById('loctg').value;
+    let kq = [];
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    let tg = localStorage.getItem('tg') ? JSON.parse(localStorage.getItem('tg')) : [];
+    let tght = Date.now();
+    dmmt.forEach(function(mt,sttmt)
+    {
+        if(thoigian==='Tất cả')
+        {
+            if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                kq.push(mt);
+        }
+        else if(thoigian==='Còn hạn')
+        {
+            let key;
+            tg.forEach(function(tg,stttg)
+            {
+                tg.tra = new Date(`${tg.tra}`);
+                if(tg.tra.getTime()<=tght)
+                    key=stttg;
+            });
+            if(sttmt===key)
+            {
+                if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                    kq.push(mt);
+            }
+        }
+        else if(thoigian==='Quá hạn')
+        {
+            let key;
+            tg.forEach(function(tg,stttg)
+            {
+                tg.tra = new Date(`${tg.tra}`);
+                if(tg.tra.getTime()>tght)
+                    key=stttg;
+            });
+            if(sttmt===key)
+            {
+                if(mt.mpm.indexOf(tk)!=-1||mt.msm.indexOf(tk)!=-1||mt.msv.indexOf(tk)!=-1)
+                    kq.push(mt);
+            }
+        }
+    });
+    let bangkq = `<th class="td1">STT</th>
+    <th class="td2b">Mã phiếu mượn</th>
+    <th class="td3b">Mã sách</th>
+    <th class="td4b">Mã sinh viên</th>
+    <th class="td5b">Ngày mượn</th>
+    <th class="td6b">Ngày trả</th>
+    <th class="td7b">SL</th>
+    <th class="td8b">Thao tác</th>`;
+    if(kq.length === 0)
+    {
+        bangkq += `<tr>
+        <td colspan="8">Không tìm thấy dữ liệu</td>
+        </tr>`;
+    }
+    kq.forEach(function(mt,stt)
+    {
+        let id = stt;
+        ++stt;
+        bangkq += `<tr>
+        <td class="td1">${stt}</td>
+        <td class="td2">${mt.mpm}</td>
+        <td class="td3">${mt.msm}</td>  
+        <td class="td4">${mt.msv}</td>
+        <td class="td5">${mt.ngm}</td>
+        <td class="td6">${mt.ngtr}</td>
+        <td class="td7">${mt.slm}</td>
+        <td class="td8">
+            <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
+        </td>
+        </tr>`
+    });
+    document.getElementById('dmmt').innerHTML = bangkq;
 }

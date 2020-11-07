@@ -345,7 +345,7 @@ function luuDms()
         <td class="td6">${sach.nxb}</td>
         <td class="td7">${sach.sl}</td>
         <td class="td8">
-            <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick='xoasach(${id})'>Xóa</a>
+            <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoasach(${id})">Xóa</a>
         </td>
         </tr>`;
         chonMs += `<option>${sach.ms}</option>`;
@@ -360,6 +360,29 @@ function xoasach(id)
     dms.splice(id,1);
     localStorage.setItem('dms',JSON.stringify(dms));
     luuDms();
+    clearinput();
+}
+
+function clearinput1()
+{
+    document.getElementById('masach').value = '';
+    document.getElementById('masach').classList.remove('invalid');
+    document.getElementById('ms-error').innerHTML = '';
+    document.getElementById('tensach').value = '';
+    document.getElementById('tensach').classList.remove('invalid');
+    document.getElementById('ts-error').innerHTML = '';
+    document.getElementById('tentacgia').value = '';
+    document.getElementById('tentacgia').classList.remove('invalid');
+    document.getElementById('ttg-error').innerHTML = '';
+    document.getElementById('theloai').value = '';
+    document.getElementById('theloai').classList.remove('invalid');
+    document.getElementById('tl-error').innerHTML = '';
+    document.getElementById('namxuatban').value = '';
+    document.getElementById('namxuatban').classList.remove('invalid');
+    document.getElementById('nxb-error').innerHTML = '';
+    document.getElementById('soluong').value = '';
+    document.getElementById('soluong').classList.remove('invalid');
+    document.getElementById('sl-error').innerHTML = '';
 }
 
 function suasach(id)
@@ -441,4 +464,58 @@ function capnhatsach(id)
             document.getElementById('nut1').innerHTML = 'Thêm mới';
         }
     }
+}
+
+function timkiemsach()
+{
+    let tk = document.getElementById('timkiemsach').value;
+    let theloai = document.getElementById('loctl').value;
+    let kq = [];
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    dms.forEach(function(sach)
+    {
+        if(theloai==='Tất cả')
+        {
+            if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                kq.push(sach);
+        }
+        else if(sach.tl.indexOf(theloai)!=-1)
+        {
+            if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                kq.push(sach);
+        }
+    });
+    let bangkq = `<tr>
+    <th class="td1">STT</th>
+    <th class="td2">Mã sách</th>
+    <th class="td3">Tên sách</th>
+    <th class="td4">Tên tác giả</th>
+    <th class="td5">Thể loại</th>
+    <th class="td6">NXB</th>
+    <th class="td7">SL</th>
+    <th class="td8">Thao tác</th>
+    </tr>`;
+    if(kq.length === 0)
+    {
+        bangkq += `<tr>
+        <td colspan="8">Không tìm thấy dữ liệu</td>
+        </tr>`;
+    }
+    kq.forEach(function(sach,stt){
+        let id = stt;
+        ++stt;
+        bangkq += `<tr>
+        <td class="td1">${stt}</td>
+        <td class="td2">${sach.ms}</td>
+        <td class="td3">${sach.ts}</td>
+        <td class="td4">${sach.ttg}</td>
+        <td class="td5">${sach.tl}</td>
+        <td class="td6">${sach.nxb}</td>
+        <td class="td7">${sach.sl}</td>
+        <td class="td8">
+            <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoasach(${id})">Xóa</a>
+        </td>
+        </tr>`;
+    });
+    document.getElementById('dms').innerHTML = bangkq;
 }
