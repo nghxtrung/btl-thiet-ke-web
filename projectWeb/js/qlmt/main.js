@@ -498,6 +498,7 @@ function capnhatmt(id)
             dmmt.splice(id,1,mtmoi);
             localStorage.setItem('dmmt',JSON.stringify(dmmt));
             luuDmmt();
+            clearinput2();
             document.getElementById('nut2').removeAttribute('onclick');
             document.getElementById('nut2').setAttribute('onclick','themmt()');
             document.getElementById('nut2').innerHTML = 'Thêm mới';

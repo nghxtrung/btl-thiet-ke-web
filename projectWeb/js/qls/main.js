@@ -459,6 +459,7 @@ function capnhatsach(id)
             dms.splice(id,1,sachmoi);
             localStorage.setItem('dms',JSON.stringify(dms));
             luuDms();
+            clearinput1();
             document.getElementById('nut1').removeAttribute('onclick');
             document.getElementById('nut1').setAttribute('onclick','themsach()');
             document.getElementById('nut1').innerHTML = 'Thêm mới';
