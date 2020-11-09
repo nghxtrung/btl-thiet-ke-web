@@ -13,6 +13,9 @@ ul li{
     padding-right: 1.5rem !important;
     transition: 0.3s;
 }
+.logo{
+    transition: 0.3s;
+}
 .nav-pills .nav-link.active{
     background-color: transparent;
 }

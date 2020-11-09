@@ -75,8 +75,21 @@ header{
     padding: 0.62rem 0 0.62rem 1rem !important;
     border-radius: 0.75rem;
 }
+.input4{
+    width: 23rem;
+    padding: 0.62rem 0 0.62rem 1rem !important;
+    border-radius: 0.75rem;
+}
 .select1{
     padding: 0.62rem 0 0.62rem 1rem !important;
+    border-radius: 0.75rem;
+}
+.select2{
+    padding: 0.62rem 1.5rem 0.62rem 1rem !important;
+    border-radius: 0.75rem;
+}
+.select3{
+    padding: 0.62rem 1.5rem 0.62rem 1rem !important;
     border-radius: 0.75rem;
 }
 .content{
