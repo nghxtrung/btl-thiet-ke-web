@@ -434,7 +434,7 @@ function capnhatsach(id)
                     DMS.masach = '';
                     document.getElementById('masach').classList.add('invalid');
                     document.getElementById('ms-error').innerHTML = 'Vui lòng không nhập trùng';
-                    return false
+                    return false;
                 }
                 else if(DMS.tensach === sach.ts)
                 {

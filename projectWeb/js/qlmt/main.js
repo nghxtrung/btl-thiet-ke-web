@@ -520,7 +520,7 @@ function timkiemmt()
         let kq1 = [];
         let kq2 = [];
         let kq3 = [];
-        let tght = Date.now();
+        let tght = new Date;
         let tg = localStorage.getItem('tg') ? JSON.parse(localStorage.getItem('tg')) : [];
         dmmt.forEach(function(mt,sttmt)
         {
@@ -535,7 +535,7 @@ function timkiemmt()
                 tg.forEach(function(tg,stttg)
                 {
                     tg.tra = new Date(`${tg.tra}`);
-                    if(tg.tra.getTime()>=tght)
+                    if(tg.tra.getDate()>=tght.getDate() && tg.tra.getMonth()>=tght.getMonth() && tg.tra.getFullYear()>=tght.getFullYear())
                     {
                         key=stttg;
                         if(sttmt===key)
@@ -553,7 +553,7 @@ function timkiemmt()
                 tg.forEach(function(tg,stttg)
                 {
                     tg.tra = new Date(`${tg.tra}`);
-                    if(tg.tra.getTime()<tght)
+                    if(tg.tra.getDate()<tght.getDate() && tg.tra.getMonth()<=tght.getMonth() && tg.tra.getFullYear()<=tght.getFullYear())
                     {
                         key=stttg;
                         if(sttmt===key)
@@ -675,7 +675,7 @@ function txmt()
         let xuongdong = '\r\n';
         let noidungcsv = `\uFEFFSTT,Mã phiếu mượn,Mã sách,Mã sinh viên,Ngày mượn,Ngày trả,Số lượng${xuongdong}`;
         let tenfilecsv;
-        let tght = Date.now();
+        let tght = new Date;
         let tg = localStorage.getItem('tg') ? JSON.parse(localStorage.getItem('tg')) : [];
         dmmt.forEach(function(mt,sttmt)
         {
@@ -690,7 +690,7 @@ function txmt()
                 tg.forEach(function(tg,stttg)
                 {
                     tg.tra = new Date(`${tg.tra}`);
-                    if(tg.tra.getTime()>=tght)
+                    if(tg.tra.getDate()>=tght.getDate() && tg.tra.getMonth()>=tght.getMonth() && tg.tra.getFullYear()>=tght.getFullYear())
                     {
                         key=stttg;
                         if(sttmt===key)
@@ -707,7 +707,7 @@ function txmt()
                 tg.forEach(function(tg,stttg)
                 {
                     tg.tra = new Date(`${tg.tra}`);
-                    if(tg.tra.getTime()<tght)
+                    if(tg.tra.getDate()<tght.getDate() && tg.tra.getMonth()<=tght.getMonth() && tg.tra.getFullYear()<=tght.getFullYear())
                     {
                         key=stttg;
                         if(sttmt===key)
