@@ -258,6 +258,7 @@ function themmt()
                 });
                 localStorage.setItem('dmmt',JSON.stringify(dmmt));
                 luuDmmt();
+                clearinput2();
             }
         }
     }
@@ -293,7 +294,7 @@ function luuDmmt()
         <td class="td6">${mt.ngtr}</td>
         <td class="td7">${mt.slm}</td>
         <td class="td8">
-            <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a>
+            <a class="action" href="javascript:void(0)" onclick="suamt(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoamt(${id})">Xóa</a> | <a class="action" href="javascript:void(0)" onclick="trasach(${id})">Trả sách</a>
         </td>
         </tr>`
     });
@@ -351,6 +352,9 @@ function xoamt(id)
     tg.splice(id,1);
     localStorage.setItem('tg',JSON.stringify(tg));
     clearinput2();
+    document.getElementById('nut2').removeAttribute('onclick');
+    document.getElementById('nut2').setAttribute('onclick','themmt()');
+    document.getElementById('nut2').innerHTML = 'Thêm mới';
 }
 
 function suamt(id)
@@ -565,14 +569,16 @@ function timkiemmt()
                 });
             }
         });
-        let bangkq = `<th class="td1">STT</th>
+        let bangkq = `<tr>
+        <th class="td1">STT</th>
         <th class="td2b">Mã phiếu mượn</th>
         <th class="td3b">Mã sách</th>
         <th class="td4b">Mã sinh viên</th>
         <th class="td5b">Ngày mượn</th>
         <th class="td6b">Ngày trả</th>
         <th class="td7b">SL</th>
-        <th class="td8b">Thao tác</th>`;
+        <th class="td8b">Thao tác</th>
+        </tr>`;
         if(kq1.length===0 && kq2.length===0 && kq3.length===0)
         {
             bangkq += `<tr>

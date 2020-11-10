@@ -24,7 +24,7 @@ function validate1(dms)
     }
 
     //Validate tên sách
-    let tsValidate = /[`~!@#$%^&*(\-_+={}\||[\]:;'"<,>.?/]{1,}/;
+    let tsValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
     if(isEmpty(dms.tensach))
     {
         document.getElementById('tensach').classList.add('invalid');
@@ -43,7 +43,7 @@ function validate1(dms)
     }
 
     //Validate tên tác giả
-    let ttgValidate = /[`~!@#$%^&*(\-_+={}\||[\]:;'"<,>.?/\d]{1,}/;
+    let ttgValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
     if(isEmpty(dms.tentacgia))
     {
         document.getElementById('tentacgia').classList.add('invalid');
@@ -140,7 +140,7 @@ function validate2(dms)
     }
 
     //Validate tên sách
-    let tsValidate = /[`~!@#$%^&*(\-_+={}\||[\]:;'"<,>.?/]{1,}/;
+    let tsValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
     if(isEmpty(dms.tensach))
     {
         document.getElementById('tensach').classList.add('invalid');
@@ -159,7 +159,7 @@ function validate2(dms)
     }
 
     //Validate tên tác giả
-    let ttgValidate = /[`~!@#$%^&*(\-_+={}\||[\]:;'"<,>.?/\d]{1,}/;
+    let ttgValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
     if(isEmpty(dms.tentacgia))
     {
         document.getElementById('tentacgia').classList.add('invalid');
@@ -308,6 +308,7 @@ function themsach()
                 });
                 localStorage.setItem('dms',JSON.stringify(dms))
                 luuDms();
+                clearinput1();
             }
         }
     }
@@ -360,7 +361,10 @@ function xoasach(id)
     dms.splice(id,1);
     localStorage.setItem('dms',JSON.stringify(dms));
     luuDms();
-    clearinput();
+    clearinput1();
+    document.getElementById('nut1').removeAttribute('onclick');
+    document.getElementById('nut1').setAttribute('onclick','themsach()');
+    document.getElementById('nut1').innerHTML = 'Thêm mới';
 }
 
 function clearinput1()
@@ -469,9 +473,6 @@ function capnhatsach(id)
 
 function timkiemsach()
 {
-    let tk = document.getElementById('timkiemsach').value;
-    let theloai = document.getElementById('loctl').value;
-    let kq = [];
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
     if(dms.length===0)
     {
@@ -479,17 +480,58 @@ function timkiemsach()
     }
     else
     {
+        let tk = document.getElementById('timkiemsach').value;
+        let theloai = document.getElementById('loctl').value;
+        let soluong = document.getElementById('locsl').value;
+        let kq = [];
         dms.forEach(function(sach)
         {
-            if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+            if(soluong==='Lọc theo số lượng'||soluong==='Tất cả')
             {
-                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
-                    kq.push(sach);    
+                if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+                {
+                    if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                        kq.push(sach);    
+                }
+                else if(sach.tl.indexOf(theloai)!=-1)
+                {
+                    if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                        kq.push(sach);    
+                }
             }
-            else if(sach.tl.indexOf(theloai)!=-1)
+            else if(soluong==='Còn')
             {
-                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
-                    kq.push(sach);    
+                sach.sl = Number(`${sach.sl}`);
+                if(sach.sl>0)
+                {
+                    if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kq.push(sach);    
+                    }
+                    else if(sach.tl.indexOf(theloai)!=-1)
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kq.push(sach);    
+                    }
+                }
+            }
+            else if(soluong==='Hết')
+            {
+                sach.sl = Number(`${sach.sl}`);
+                if(sach.sl===0)
+                {
+                    if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kq.push(sach);    
+                    }
+                    else if(sach.tl.indexOf(theloai)!=-1)
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kq.push(sach);    
+                    }
+                }
             }
         });
         let bangkq = `<tr>
@@ -551,19 +593,55 @@ function txsach()
     {
         let tk = document.getElementById('timkiemsach').value;
         let theloai = document.getElementById('loctl').value;
+        let soluong = document.getElementById('locsl').value;
         let kqtx = [];
         dms.forEach(function(sach)
         {
-            if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+            if(soluong==='Lọc theo số lượng'||soluong==='Tất cả')
             {
-                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
-                    kqtx.push(sach);    
+                if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+                {
+                    if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                        kqtx.push(sach);    
+                }
+                else if(sach.tl.indexOf(theloai)!=-1)
+                {
+                    if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                        kqtx.push(sach);    
+                }
             }
-            else if(sach.tl.indexOf(theloai)!=-1)
+            else if(soluong==='Còn')
             {
-                if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
-                    kqtx.push(sach);    
+                if(sach.sl>0)
+                {
+                    if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kqtx.push(sach);    
+                    }
+                    else if(sach.tl.indexOf(theloai)!=-1)
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kqtx.push(sach);    
+                    }
+                }
             }
+            else if(soluong==='Hết')
+            {
+                if(sach.sl===0)
+                {
+                    if(theloai==='Lọc theo thể loại'||theloai==='Tất cả')
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kqtx.push(sach);    
+                    }
+                    else if(sach.tl.indexOf(theloai)!=-1)
+                    {
+                        if(sach.ms.indexOf(tk)!=-1||sach.ts.indexOf(tk)!=-1||sach.ttg.indexOf(tk)!=-1)
+                            kqtx.push(sach);    
+                    }
+                }
+            }            
         });
         if(kqtx.length===0)
         {
