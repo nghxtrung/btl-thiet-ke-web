@@ -358,13 +358,33 @@ function luuDms()
 function xoasach(id)
 {
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-    dms.splice(id,1);
-    localStorage.setItem('dms',JSON.stringify(dms));
-    luuDms();
-    clearinput1();
-    document.getElementById('nut1').removeAttribute('onclick');
-    document.getElementById('nut1').setAttribute('onclick','themsach()');
-    document.getElementById('nut1').innerHTML = 'Thêm mới';
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    let mskt;
+    let kt=true;
+    dms.forEach(function(sach,stt)
+    {
+        if(stt===id)
+            mskt=sach.ms;
+    });
+    dmmt.forEach(function(mt)
+    {
+        if(mskt===mt.msm)
+            kt=false;
+    });
+    if(kt)
+    {
+        dms.splice(id,1);
+        localStorage.setItem('dms',JSON.stringify(dms));
+        luuDms();
+        clearinput1();
+        document.getElementById('nut1').removeAttribute('onclick');
+        document.getElementById('nut1').setAttribute('onclick','themsach()');
+        document.getElementById('nut1').innerHTML = 'Thêm mới';
+    }
+    else
+    {
+        alert("Chức năng này hiện không khả dụng do dữ liệu sách cần xóa xuất hiện trong danh mục mượn - trả! Vui lòng kiểm tra lại!");
+    }
 }
 
 function clearinput1()
