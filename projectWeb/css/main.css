@@ -359,32 +359,4 @@ tr th{
         margin-bottom: 1.5rem;
     }
 } 
-.navv{
-    display: block;
-}
-.bars{
-    float: right;
-    margin-right: 3rem;
-    font-size: 2.5rem;
-    margin-top: -4.3rem;
-    display: none;
 
-}
-@media only screen and (max-width: 930px){
-    .navv{
-        display: block;
-    }
-    ul{
-        display: flex;
-        flex-direction: column;
-    }
-    ul li{
-        text-align: center;
-    }
-    .bars{
-        display: block;
-    }
-    .logo{
-        padding-bottom: 0.2rem;
-    }
-}

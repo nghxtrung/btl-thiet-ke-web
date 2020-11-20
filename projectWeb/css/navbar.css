@@ -13,10 +13,6 @@ ul li{
     padding-right: 1.5rem !important;
     transition: 0.3s;
 }
-.logo{
-    transition: 0.3s;
-    border-radius: 3rem;
-}
 .nav-pills .nav-link.active{
     background-color: transparent;
 }
@@ -39,4 +35,24 @@ ul .logo:hover{
     padding-left: 2rem;
     padding-right: 2rem;
     border-radius: 3rem;
+}
+button:focus{
+    outline: none;
+}
+
+@media only screen and (max-width: 1024px){
+    .navbar-toggler{
+        position: absolute;
+        right: 2rem;
+        top: -5.5rem;
+        font-size: 2.5rem;
+    }
+    .nav-bar{
+        width: 100%;
+        background-color: #feef78;
+        text-align: center;
+    }
+    .navbar{
+        padding: 0 !important;
+    }
 }
