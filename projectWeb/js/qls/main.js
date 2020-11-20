@@ -1,264 +1,414 @@
-function isEmpty(input) {
+function isEmpty(input) 
+{
     return ((input === '') || (input.length === 0));
 }
 
-function validate1(dms)
+function validateMS()
 {
-    //Validate mã sách
-    let msValidate = /^[a-zA-Z0-9]{8}$/;
-    if(isEmpty(dms.masach))
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    let masach = document.getElementById('masach').value;
+    function check()
     {
+        if(dms.length>0)
+        {
+            let kt = dms.every(function(sach)
+            {
+                if(masach.trim().toLowerCase() === sach.ms.toLowerCase())
+                {
+                    masach = '';
+                    document.getElementById('masach').classList.add('invalid');
+                    document.getElementById('ms-error').innerHTML = 'Vui lòng không nhập trùng';
+                    return false;
+                }
+                return true;
+            });
+            return kt;
+        }
+    }
+    let msValidate = /^[a-zA-Z0-9]{8}$/;
+    if(isEmpty(masach))
+    {
+        document.getElementById('masach').classList.remove('valid');
         document.getElementById('masach').classList.add('invalid');
         document.getElementById('ms-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(msValidate.test(dms.masach.trim())===false)
+    else if(msValidate.test(masach.trim())===false)
     {
-        dms.masach = '';
+        masach = '';
+        document.getElementById('masach').classList.remove('valid');
         document.getElementById('masach').classList.add('invalid');
         document.getElementById('ms-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
-        document.getElementById('masach').classList.remove('invalid');
-        document.getElementById('ms-error').innerHTML = '';
+        if(check())
+        {
+            document.getElementById('masach').classList.remove('invalid');
+            document.getElementById('masach').classList.add('valid');
+            document.getElementById('ms-error').innerHTML = '';
+            return true;
+        }
+        else
+            return false;  
     }
+}
 
-    //Validate tên sách
-    let tsValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
-    if(isEmpty(dms.tensach))
+function validateTS()
+{
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    let tensach = document.getElementById('tensach').value;
+    function check()
     {
+        if(dms.length>0)
+        {
+            let kt = dms.every(function(sach)
+            {
+                if(tensach.trim().toLowerCase() === sach.ts.toLowerCase())
+                {
+                    tensach = '';
+                    document.getElementById('tensach').classList.remove('valid');
+                    document.getElementById('tensach').classList.add('invalid');
+                    document.getElementById('ts-error').innerHTML = 'Vui lòng không nhập trùng';
+                    return false;
+                }
+                return true;
+            });
+            return kt;
+        }
+    }
+    let tsValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
+    if(isEmpty(tensach))
+    {
+        document.getElementById('tensach').classList.remove('valid');
         document.getElementById('tensach').classList.add('invalid');
         document.getElementById('ts-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(tsValidate.test(dms.tensach.trim()))
+    else if(tsValidate.test(tensach.trim()))
     {
-        dms.tensach = '';
+        tensach = '';
+        document.getElementById('tensach').classList.remove('valid');
         document.getElementById('tensach').classList.add('invalid');
         document.getElementById('ts-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
-        document.getElementById('tensach').classList.remove('invalid');
-        document.getElementById('ts-error').innerHTML = '';
+        if(check())
+        {
+            document.getElementById('tensach').classList.remove('invalid');
+            document.getElementById('tensach').classList.add('valid');
+            document.getElementById('ts-error').innerHTML = '';
+            return true;
+        }
+        else
+            return false;
     }
+}
 
-    //Validate tên tác giả
+function validateTTG()
+{
+    let tentacgia = document.getElementById('tentacgia').value;
     let ttgValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
-    if(isEmpty(dms.tentacgia))
+    if(isEmpty(tentacgia))
     {
+        document.getElementById('tentacgia').classList.remove('valid');
         document.getElementById('tentacgia').classList.add('invalid');
         document.getElementById('ttg-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(ttgValidate.test(dms.tentacgia.trim()))
+    else if(ttgValidate.test(tentacgia.trim()))
     {
-        dms.tentacgia = ''
+        tentacgia = '';
+        document.getElementById('tentacgia').classList.remove('valid');
         document.getElementById('tentacgia').classList.add('invalid');
         document.getElementById('ttg-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
         document.getElementById('tentacgia').classList.remove('invalid');
+        document.getElementById('tentacgia').classList.add('valid');
         document.getElementById('ttg-error').innerHTML = '';
+        return true;
     }
+}
 
-    //Validate thể loại
-    if(isEmpty(dms.theloai))
+function validateTL()
+{
+    let theloai = document.getElementById('theloai').value;
+    if(isEmpty(theloai))
     {
+        document.getElementById('theloai').classList.remove('valid');
         document.getElementById('theloai').classList.add('invalid');
         document.getElementById('tl-error').innerHTML = 'Vui lòng chọn thể loại';
+        return false;
     }
     else
     {
         document.getElementById('theloai').classList.remove('invalid');
+        document.getElementById('theloai').classList.add('valid');
         document.getElementById('tl-error').innerHTML = '';
+        return true;
     }
+}
 
-    //Validate năm xuất bản
+function validateNXB()
+{
+    let namxuatban = document.getElementById('namxuatban').value;
     let nxbValidate = /^[\d]{4}$/;
-    if(isEmpty(dms.namxuatban))
+    if(isEmpty(namxuatban))
     {
+        document.getElementById('namxuatban').classList.remove('valid');
         document.getElementById('namxuatban').classList.add('invalid');
         document.getElementById('nxb-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(nxbValidate.test(dms.namxuatban.trim())===false||dms.namxuatban.trim()<=1900||dms.namxuatban.trim()>=2020)
+    else if(nxbValidate.test(namxuatban.trim())===false||namxuatban.trim()<=1900||namxuatban.trim()>=2020)
     {
-        dms.namxuatban = '';
+        namxuatban = '';
+        document.getElementById('namxuatban').classList.remove('valid');
         document.getElementById('namxuatban').classList.add('invalid');
         document.getElementById('nxb-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
         document.getElementById('namxuatban').classList.remove('invalid');
+        document.getElementById('namxuatban').classList.add('valid');
         document.getElementById('nxb-error').innerHTML = '';
+        return true;
     }
+}
 
-    //Validate số lượng
+function validateSL()
+{
+    let soluong = document.getElementById('soluong').value;
     let slValidate = /^(0|[1-9][0-9]*)$/;
-    if(isEmpty(dms.soluong))
+    if(isEmpty(soluong))
     {
+        document.getElementById('soluong').classList.remove('valid');
         document.getElementById('soluong').classList.add('invalid');
         document.getElementById('sl-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(dms.soluong.trim()<=0)
+    else if(soluong.trim()<=0)
     {
-        dms.soluong = '';
+        soluong = '';
+        document.getElementById('soluong').classList.remove('valid');
         document.getElementById('soluong').classList.add('invalid');
         document.getElementById('sl-error').innerHTML = 'Vui lòng nhập số lớn hơn 0';
+        return false;
     }
-    else if(slValidate.test(dms.soluong.trim())===false)
+    else if(slValidate.test(soluong.trim())===false)
     {
-        dms.soluong = '';
+        soluong = '';
+        document.getElementById('soluong').classList.remove('valid');
         document.getElementById('soluong').classList.add('invalid');
         document.getElementById('sl-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
         document.getElementById('soluong').classList.remove('invalid');
+        document.getElementById('soluong').classList.add('valid');
         document.getElementById('sl-error').innerHTML = '';
+        return true;
     }
 }
 
-function validate2(dms)
+function validateMS2(id)
 {
-    //Validate mã sách
-    let msValidate = /^[a-zA-Z0-9]{8}$/;
-    if(isEmpty(dms.masach))
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    let masach = document.getElementById('masach').value;
+    function check()
     {
+        if(dms.length>0)
+        {
+            let kt = dms.every(function(sach,stt)
+            {
+                if(stt != id)
+                {
+                    if(masach.trim().toLowerCase() === sach.ms.toLowerCase())
+                    {
+                        masach = '';
+                        document.getElementById('masach').classList.remove('valid');
+                        document.getElementById('masach').classList.add('invalid');
+                        document.getElementById('ms-error').innerHTML = 'Vui lòng không nhập trùng';
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            });
+            return kt;
+        }
+    }
+    let msValidate = /^[a-zA-Z0-9]{8}$/;
+    if(isEmpty(masach))
+    {
+        document.getElementById('masach').classList.remove('valid');
         document.getElementById('masach').classList.add('invalid');
         document.getElementById('ms-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(msValidate.test(dms.masach.trim())===false)
+    else if(msValidate.test(masach.trim())===false)
     {
-        dms.masach = '';
+        masach = '';
+        document.getElementById('masach').classList.remove('valid');
         document.getElementById('masach').classList.add('invalid');
         document.getElementById('ms-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
-        document.getElementById('masach').classList.remove('invalid');
-        document.getElementById('ms-error').innerHTML = '';
+        if(check())
+        {
+            document.getElementById('masach').classList.remove('invalid');
+            document.getElementById('masach').classList.add('valid');
+            document.getElementById('ms-error').innerHTML = '';
+            return true;
+        }
+        else
+            return false;  
     }
+}
 
-    //Validate tên sách
-    let tsValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
-    if(isEmpty(dms.tensach))
+function validateTS2(id)
+{
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    let tensach = document.getElementById('tensach').value;
+    function check()
     {
+        if(dms.length>0)
+        {
+            let kt = dms.every(function(sach,stt)
+            {
+                if(stt != id)
+                {
+                    if(tensach.trim().toLowerCase() === sach.ts.toLowerCase())
+                    {
+                        tensach = '';
+                        document.getElementById('tensach').classList.remove('valid');
+                        document.getElementById('tensach').classList.add('invalid');
+                        document.getElementById('ts-error').innerHTML = 'Vui lòng không nhập trùng';
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            });
+            return kt;
+        }
+    }
+    let tsValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
+    if(isEmpty(tensach))
+    {
+        document.getElementById('tensach').classList.remove('valid');
         document.getElementById('tensach').classList.add('invalid');
         document.getElementById('ts-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(tsValidate.test(dms.tensach.trim()))
+    else if(tsValidate.test(tensach.trim()))
     {
-        dms.tensach = '';
+        tensach = '';
+        document.getElementById('tensach').classList.remove('valid');
         document.getElementById('tensach').classList.add('invalid');
         document.getElementById('ts-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
-        document.getElementById('tensach').classList.remove('invalid');
-        document.getElementById('ts-error').innerHTML = '';
+        if(check())
+        {
+            document.getElementById('tensach').classList.remove('invalid');
+            document.getElementById('tensach').classList.add('valid');
+            document.getElementById('ts-error').innerHTML = '';
+            return true;
+        }
+        else
+            return false;
     }
+}
 
-    //Validate tên tác giả
-    let ttgValidate = /[`~!@#$%^&*_+={}\-()|[\]:;'"<,>./?]/;
-    if(isEmpty(dms.tentacgia))
-    {
-        document.getElementById('tentacgia').classList.add('invalid');
-        document.getElementById('ttg-error').innerHTML = 'Vui lòng không bỏ trống';
-    }
-    else if(ttgValidate.test(dms.tentacgia.trim()))
-    {
-        dms.tentacgia = ''
-        document.getElementById('tentacgia').classList.add('invalid');
-        document.getElementById('ttg-error').innerHTML = 'Vui lòng nhập đúng định dạng';
-    }
-    else
-    {
-        document.getElementById('tentacgia').classList.remove('invalid');
-        document.getElementById('ttg-error').innerHTML = '';
-    }
-
-    //Validate thể loại
-    if(isEmpty(dms.theloai))
-    {
-        document.getElementById('theloai').classList.add('invalid');
-        document.getElementById('tl-error').innerHTML = 'Vui lòng chọn thể loại';
-    }
-    else
-    {
-        document.getElementById('theloai').classList.remove('invalid');
-        document.getElementById('tl-error').innerHTML = '';
-    }
-
-    //Validate năm xuất bản
-    let nxbValidate = /^[\d]{4}$/;
-    if(isEmpty(dms.namxuatban))
-    {
-        document.getElementById('namxuatban').classList.add('invalid');
-        document.getElementById('nxb-error').innerHTML = 'Vui lòng không bỏ trống';
-    }
-    else if(nxbValidate.test(dms.namxuatban.trim())===false||dms.namxuatban.trim()<=1900||dms.namxuatban.trim()>=2020)
-    {
-        dms.namxuatban = '';
-        document.getElementById('namxuatban').classList.add('invalid');
-        document.getElementById('nxb-error').innerHTML = 'Vui lòng nhập đúng định dạng';
-    }
-    else
-    {
-        document.getElementById('namxuatban').classList.remove('invalid');
-        document.getElementById('nxb-error').innerHTML = '';
-    }
-
-    //Validate số lượng
+function validateSL2()
+{
+    let soluong = document.getElementById('soluong').value;
     let slValidate = /^(0|[1-9][0-9]*)$/;
-    if(isEmpty(dms.soluong))
+    if(isEmpty(soluong))
     {
+        document.getElementById('soluong').classList.remove('valid');
         document.getElementById('soluong').classList.add('invalid');
         document.getElementById('sl-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
     }
-    else if(dms.soluong.trim()<0)
+    else if(soluong.trim()<0)
     {
-        dms.soluong = '';
+        soluong = '';
+        document.getElementById('soluong').classList.remove('valid');
         document.getElementById('soluong').classList.add('invalid');
         document.getElementById('sl-error').innerHTML = 'Vui lòng nhập số lớn hơn hoặc bằng 0';
+        return false;
     }
-    else if(slValidate.test(dms.soluong.trim())===false)
+    else if(slValidate.test(soluong.trim())===false)
     {
-        dms.soluong = '';
+        soluong = '';
+        document.getElementById('soluong').classList.remove('valid');
         document.getElementById('soluong').classList.add('invalid');
         document.getElementById('sl-error').innerHTML = 'Vui lòng nhập đúng định dạng';
+        return false;
     }
     else
     {
         document.getElementById('soluong').classList.remove('invalid');
+        document.getElementById('soluong').classList.add('valid');
         document.getElementById('sl-error').innerHTML = '';
+        return true;
     }
 }
+
+let inputMS = document.getElementById('masach');
+let inputTS = document.getElementById('tensach');
+let inputTTG = document.getElementById('tentacgia');
+let inputTL = document.getElementById('theloai');
+let inputNXB = document.getElementById('namxuatban');
+let inputSL = document.getElementById('soluong');
+inputMS.setAttribute("onblur","validateMS()");
+inputTS.setAttribute("onblur","validateTS()");
+inputTTG.setAttribute("onblur","validateTTG()");
+inputTL.setAttribute("onblur","validateTL()");
+inputNXB.setAttribute("onblur","validateNXB()");
+inputSL.setAttribute("onblur","validateSL()");
+inputMS.setAttribute("onkeyup","validateMS()");
+inputTS.setAttribute("onkeyup","validateTS()");
+inputTTG.setAttribute("onkeyup","validateTTG()");
+inputTL.setAttribute("onchange","validateTL()");
+inputNXB.setAttribute("onkeyup","validateNXB()");
+inputSL.setAttribute("onkeyup","validateSL()");
+
 
 function themsach()
 {
-    //Lấy giá trị của từng phần tử để kiểm tra
-    let masach = document.getElementById('masach').value;
-    let tensach = document.getElementById('tensach').value;
-    let tentacgia = document.getElementById('tentacgia').value;
-    let theloai = document.getElementById('theloai').value;
-    let namxuatban = document.getElementById('namxuatban').value;
-    let soluong = document.getElementById('soluong').value;
-    let DMS = {
-        masach: masach,
-        tensach: tensach,
-        tentacgia: tentacgia,
-        theloai: theloai,
-        namxuatban: namxuatban,
-        soluong: soluong,
-    };
-    validate1(DMS);
-    //Lưu danh mục sách vào local storage
-    if(DMS.masach && DMS.tensach && DMS.tentacgia && DMS.theloai && DMS.namxuatban && DMS.soluong)
+    validateMS(); 
+    validateTS(); 
+    validateTTG(); 
+    validateTL(); 
+    validateNXB(); 
+    validateSL();
+    if(validateMS() && validateTS() && validateTTG() && validateTL() && validateNXB() && validateSL())
     {
-        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-        //Lọc trùng thông tin
-        if(dms.length === 0)
+        let check = confirm("Bạn có chắc chắn muốn thêm sách này?");
+        if(check)
         {
+            let masach = document.getElementById('masach').value;
+            let tensach = document.getElementById('tensach').value;
+            let tentacgia = document.getElementById('tentacgia').value;
+            let theloai = document.getElementById('theloai').value;
+            let namxuatban = document.getElementById('namxuatban').value;
+            let soluong = document.getElementById('soluong').value;
+            let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
             dms.push(
             {
                 ms: masach,
@@ -270,46 +420,7 @@ function themsach()
             });
             localStorage.setItem('dms',JSON.stringify(dms))
             luuDms();
-        }
-        else
-        {
-            let kt;
-            dms.forEach(function(sach)
-            {
-                if(DMS.masach === sach.ms)
-                {
-                    kt=false;
-                    DMS.masach = '';
-                    document.getElementById('masach').classList.add('invalid');
-                    document.getElementById('ms-error').innerHTML = 'Vui lòng không nhập trùng';
-                }
-                else if(DMS.tensach === sach.ts)
-                {
-                    kt=false;
-                    DMS.tensach = '';
-                    document.getElementById('tensach').classList.add('invalid');
-                    document.getElementById('ts-error').innerHTML = 'Vui lòng không nhập trùng';
-                }  
-                else
-                {
-                    kt=true;
-                }
-            });
-            if(kt)
-            {
-                dms.push(
-                {
-                    ms: masach,
-                    ts: tensach,
-                    ttg: tentacgia,
-                    tl: theloai,
-                    nxb: namxuatban,
-                    sl: soluong,
-                });
-                localStorage.setItem('dms',JSON.stringify(dms))
-                luuDms();
-                clearinput1();
-            }
+            clearinput1();
         }
     }
 }
@@ -337,7 +448,7 @@ function luuDms()
     dms.forEach(function(sach,stt){
         let id = stt;
         ++stt;
-        bangDms += `<tr>
+        bangDms += `<tr onclick="suasach(${id})">
         <td class="td1">${stt}</td>
         <td class="td2">${sach.ms}</td>
         <td class="td3">${sach.ts}</td>
@@ -346,7 +457,7 @@ function luuDms()
         <td class="td6">${sach.nxb}</td>
         <td class="td7">${sach.sl}</td>
         <td class="td8">
-            <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoasach(${id})">Xóa</a>
+            <a class="action" href="javascript:void(0)" onclick="suasach(${id})"><i class="fas fa-pen"></i></a> &ensp; <a class="action" href="javascript:void(0)" onclick="xoasach(${id})"><i class="fas fa-trash"></i></a>
         </td>
         </tr>`;
         chonMs += `<option>${sach.ms}</option>`;
@@ -357,33 +468,50 @@ function luuDms()
 
 function xoasach(id)
 {
-    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
-    let mskt;
-    let kt=true;
-    dms.forEach(function(sach,stt)
+    let tableLength = document.getElementById("dms").rows.length;
+    for(let i=1;i<tableLength;++i)
     {
-        if(stt===id)
-            mskt=sach.ms;
-    });
-    dmmt.forEach(function(mt)
+        document.getElementById("dms").rows[i].removeAttribute("onclick");
+    }
+    let check = confirm("Bạn có chắc chắn muốn xóa thông tin sách này?");
+    if(check)
     {
-        if(mskt===mt.msm)
-            kt=false;
-    });
-    if(kt)
+        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+        let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+        let mskt;
+        let kt=true;
+        dms.forEach(function(sach,stt)
+        {
+            if(stt===id)
+                mskt=sach.ms;
+        });
+        dmmt.forEach(function(mt)
+        {
+            if(mskt===mt.msm)
+                kt=false;
+        });
+        if(kt)
+        {
+            dms.splice(id,1);
+            localStorage.setItem('dms',JSON.stringify(dms));
+            luuDms();
+            clearinput1();
+            document.getElementById('nut1').removeAttribute('onclick');
+            document.getElementById('nut1').setAttribute('onclick','themsach()');
+            document.getElementById('nut1').innerHTML = 'Thêm mới';
+        }
+        else
+        {
+            alert("Chức năng này hiện không khả dụng do dữ liệu sách cần xóa xuất hiện trong danh mục mượn - trả! Vui lòng kiểm tra lại!");
+        }
+    }
+    else
     {
-        dms.splice(id,1);
-        localStorage.setItem('dms',JSON.stringify(dms));
         luuDms();
         clearinput1();
         document.getElementById('nut1').removeAttribute('onclick');
         document.getElementById('nut1').setAttribute('onclick','themsach()');
         document.getElementById('nut1').innerHTML = 'Thêm mới';
-    }
-    else
-    {
-        alert("Chức năng này hiện không khả dụng do dữ liệu sách cần xóa xuất hiện trong danh mục mượn - trả! Vui lòng kiểm tra lại!");
     }
 }
 
@@ -391,31 +519,44 @@ function clearinput1()
 {
     document.getElementById('masach').value = '';
     document.getElementById('masach').classList.remove('invalid');
+    document.getElementById('masach').classList.remove('valid');
     document.getElementById('ms-error').innerHTML = '';
     document.getElementById('tensach').value = '';
     document.getElementById('tensach').classList.remove('invalid');
+    document.getElementById('tensach').classList.remove('valid');
     document.getElementById('ts-error').innerHTML = '';
     document.getElementById('tentacgia').value = '';
     document.getElementById('tentacgia').classList.remove('invalid');
+    document.getElementById('tentacgia').classList.remove('valid');
     document.getElementById('ttg-error').innerHTML = '';
     document.getElementById('theloai').value = '';
     document.getElementById('theloai').classList.remove('invalid');
+    document.getElementById('theloai').classList.remove('valid');
     document.getElementById('tl-error').innerHTML = '';
     document.getElementById('namxuatban').value = '';
     document.getElementById('namxuatban').classList.remove('invalid');
+    document.getElementById('namxuatban').classList.remove('valid');
     document.getElementById('nxb-error').innerHTML = '';
     document.getElementById('soluong').value = '';
     document.getElementById('soluong').classList.remove('invalid');
+    document.getElementById('soluong').classList.remove('valid');
     document.getElementById('sl-error').innerHTML = '';
 }
 
 function suasach(id)
 {
+    clearinput1();
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
     dms.forEach(function(sach,stt)
     {
         if(stt === id)
         {
+            document.getElementById('masach').classList.add('valid');
+            document.getElementById('tensach').classList.add('valid');
+            document.getElementById('tentacgia').classList.add('valid');
+            document.getElementById('theloai').classList.add('valid');
+            document.getElementById('namxuatban').classList.add('valid');
+            document.getElementById('soluong').classList.add('valid');
             document.getElementById('masach').value = sach.ms;
             document.getElementById('tensach').value = sach.ts;
             document.getElementById('tentacgia').value = sach.ttg;
@@ -423,8 +564,16 @@ function suasach(id)
             document.getElementById('namxuatban').value = sach.nxb;
             document.getElementById('soluong').value = sach.sl;
             document.getElementById('nut1').innerHTML = 'Cập nhật';
-            document.getElementById('nut1').removeAttribute('onclick');
             document.getElementById('nut1').setAttribute('onclick','capnhatsach('+id+')');
+            inputMS.removeAttribute("onblur");
+            inputTS.removeAttribute("onblur");
+            inputTTG.removeAttribute("onblur");
+            inputTL.removeAttribute("onblur");
+            inputNXB.removeAttribute("onblur");
+            inputSL.removeAttribute("onblur");
+            inputMS.setAttribute("onkeyup",'validateMS2('+id+')');
+            inputTS.setAttribute("onkeyup",'validateTS2('+id+')');
+            inputSL.setAttribute("onkeyup",'validateSL2('+id+')');
         }
     });
 }
@@ -432,46 +581,39 @@ function suasach(id)
 function capnhatsach(id)
 {
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-    let masach = document.getElementById('masach').value;
-    let tensach = document.getElementById('tensach').value;
-    let tentacgia = document.getElementById('tentacgia').value;
-    let theloai = document.getElementById('theloai').value;
-    let namxuatban = document.getElementById('namxuatban').value;
-    let soluong = document.getElementById('soluong').value;
-    let DMS = {
-        masach: masach,
-        tensach: tensach,
-        tentacgia: tentacgia,
-        theloai: theloai,
-        namxuatban: namxuatban,
-        soluong: soluong,
-    };
-    validate2(DMS);
-    if(DMS.masach && DMS.tensach && DMS.tentacgia && DMS.theloai && DMS.namxuatban && DMS.soluong)
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    validateMS2(id);
+    validateTS2(id);
+    validateTTG();
+    validateTL();
+    validateNXB();
+    validateSL2();
+    if(validateMS2(id) && validateTS2(id) && validateTTG() && validateTL() && validateNXB() && validateSL2())
     {
-        let kt = dms.every(function(sach,stt)
+        let check = confirm("Bạn có chắc chắn muốn cập nhật thông tin sách này?");
+        if(check)
         {
-            if(stt != id)
+            let masach = document.getElementById('masach').value;
+            let tensach = document.getElementById('tensach').value;
+            let tentacgia = document.getElementById('tentacgia').value;
+            let theloai = document.getElementById('theloai').value;
+            let namxuatban = document.getElementById('namxuatban').value;
+            let soluong = document.getElementById('soluong').value;
+            let msMoi;
+            dms.forEach(function(sach,stt)
             {
-                if(DMS.masach === sach.ms)
+                if(stt===id)
+                    msMoi = sach.ms;
+            });
+            dmmt.forEach(function(mt)
+            {
+                if(msMoi === mt.msm)
                 {
-                    DMS.masach = '';
-                    document.getElementById('masach').classList.add('invalid');
-                    document.getElementById('ms-error').innerHTML = 'Vui lòng không nhập trùng';
-                    return false;
+                    mt.msm = masach;
+                    localStorage.setItem('dmmt',JSON.stringify(dmmt));
                 }
-                else if(DMS.tensach === sach.ts)
-                {
-                    DMS.tensach = '';
-                    document.getElementById('tensach').classList.add('invalid');
-                    document.getElementById('ts-error').innerHTML = 'Vui lòng không nhập trùng';
-                    return false;
-                }
-            }
-            return true;
-        });
-        if(kt)
-        {
+            });
+            luuDmmt();
             sachmoi = {
                 ms: masach,
                 ts: tensach,
@@ -487,6 +629,15 @@ function capnhatsach(id)
             document.getElementById('nut1').removeAttribute('onclick');
             document.getElementById('nut1').setAttribute('onclick','themsach()');
             document.getElementById('nut1').innerHTML = 'Thêm mới';
+            inputMS.setAttribute("onblur","validateMS()");
+            inputTS.setAttribute("onblur","validateTS()");
+            inputTTG.setAttribute("onblur","validateTTG()");
+            inputTL.setAttribute("onblur","validateTL()");
+            inputNXB.setAttribute("onblur","validateNXB()");
+            inputSL.setAttribute("onblur","validateSL()");
+            inputMS.setAttribute("onkeyup","validateMS()");
+            inputTS.setAttribute("onkeyup","validateTS()");
+            inputSL.setAttribute("onkeyup","validateSL()");
         }
     }
 }
@@ -573,7 +724,7 @@ function timkiemsach()
         kq.forEach(function(sach,stt){
             let id = stt;
             ++stt;
-            bangkq += `<tr>
+            bangkq += `<tr onclick="suasach(${id})">
             <td class="td1">${stt}</td>
             <td class="td2">${sach.ms}</td>
             <td class="td3">${sach.ts}</td>
@@ -582,7 +733,7 @@ function timkiemsach()
             <td class="td6">${sach.nxb}</td>
             <td class="td7">${sach.sl}</td>
             <td class="td8">
-                <a class="action" href="javascript:void(0)" onclick="suasach(${id})">Sửa</a> | <a class="action" href="javascript:void(0)" onclick="xoasach(${id})">Xóa</a>
+                <a class="action" href="javascript:void(0)" onclick="suasach(${id})"><i class="fas fa-pen"></i></a> &ensp; <a class="action" href="javascript:void(0)" onclick="xoasach(${id})"><i class="fas fa-trash"></i></a>
             </td>
             </tr>`;
         });

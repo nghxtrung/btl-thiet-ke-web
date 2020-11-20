@@ -272,6 +272,9 @@ th, td{
 .invalid{
     box-shadow: red 0px 0px 5px;
 }
+.valid{
+    box-shadow: green 0px 0px 5px;
+}
 #ngm-error, #ngtr-error{
     margin-left: 9rem;
 }
@@ -281,6 +284,9 @@ th, td{
 }
 input:focus, select:focus{
     outline: none;
+}
+.btn-outline-danger:focus{
+    outline: 0 !important;
 }
 .sync{
     float: right;
@@ -295,4 +301,90 @@ input:focus, select:focus{
 }
 .sync:hover{
     opacity: 100%;
+}
+tr th{
+    background-color: #271756;
+    color: white;
+}
+.form{
+    display: flex;
+    flex-direction: row;
+}
+/* Responsive */
+
+@media only screen and (max-width: 1405px){
+    .form{
+        display: flex;
+        flex-direction: column;
+    }
+    .form-1{
+        width: 29rem;
+        height: 100%;
+        padding-bottom: 3rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        opacity: 90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+    .form-2{
+        width: 58rem;
+        height: 100%;
+        padding-bottom: 4rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        margin-left: 1rem;
+        opacity: 90%;
+        margin: 0 auto;
+    }
+    .form-1b{
+        width: 29rem;
+        height: 100%;
+        padding-bottom: 3rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        opacity: 90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+    .form-2b{
+        width: 58rem;
+        height: 100%;
+        padding-bottom: 4rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        margin-left: 1rem;
+        opacity: 90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+} 
+.navv{
+    display: block;
+}
+.bars{
+    float: right;
+    margin-right: 3rem;
+    font-size: 2.5rem;
+    margin-top: -4.3rem;
+    display: none;
+
+}
+@media only screen and (max-width: 930px){
+    .navv{
+        display: block;
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+    }
+    ul li{
+        text-align: center;
+    }
+    .bars{
+        display: block;
+    }
+    .logo{
+        padding-bottom: 0.2rem;
+    }
 }

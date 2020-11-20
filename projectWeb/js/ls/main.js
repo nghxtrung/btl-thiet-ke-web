@@ -1,27 +1,43 @@
 function trasach(id)
 {
-    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
-    let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
-    dmmt.forEach(function(mt,stt)
+    let tableLength = document.getElementById("dmmt").rows.length;
+    for(let i=1;i<tableLength;++i)
     {
-        if(id===stt)
+        document.getElementById("dmmt").rows[i].removeAttribute("onclick");
+    }
+    let check = confirm("Bạn có chắc chắn muốn trả sách?");
+    if(check)
+    {
+        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+        let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+        let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
+        dmmt.forEach(function(mt,stt)
         {
-            ls.push(mt);
-            dms.forEach(function(sach)
+            if(id===stt)
             {
-                if(mt.msm===sach.ms)
+                ls.push(mt);
+                dms.forEach(function(sach)
                 {
-                    mt.slm = new Number(`${mt.slm}`);
-                    sach.sl = new Number(`${sach.sl}`);
-                    sach.sl += mt.slm;
-                }
-            });
-        }
-    });
-    localStorage.setItem('ls',JSON.stringify(ls));
-    luuls();
-    xoamt(id);
+                    if(mt.msm===sach.ms)
+                    {
+                        mt.slm = new Number(`${mt.slm}`);
+                        sach.sl = new Number(`${sach.sl}`);
+                        sach.sl += mt.slm;
+                    }
+                });
+            }
+        });
+        localStorage.setItem('ls',JSON.stringify(ls));
+        luuls();
+        xoamt(id);
+    }
+    else
+    {
+        luuDmmt();
+        clearinput2();
+        document.getElementById('nut2').setAttribute('onclick','themmt()');
+        document.getElementById('nut2').innerHTML = 'Thêm mới';
+    }
 }
 
 function luuls()
