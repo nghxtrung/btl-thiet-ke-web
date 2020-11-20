@@ -43,7 +43,7 @@ function validateMS()
     }
     else
     {
-        if(check())
+        if(dms.length===0)
         {
             document.getElementById('masach').classList.remove('invalid');
             document.getElementById('masach').classList.add('valid');
@@ -51,7 +51,17 @@ function validateMS()
             return true;
         }
         else
-            return false;  
+        {
+            if(check())
+            {
+                document.getElementById('masach').classList.remove('invalid');
+                document.getElementById('masach').classList.add('valid');
+                document.getElementById('ms-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;  
+        }
     }
 }
 
@@ -96,7 +106,7 @@ function validateTS()
     }
     else
     {
-        if(check())
+        if(dms.length===0)
         {
             document.getElementById('tensach').classList.remove('invalid');
             document.getElementById('tensach').classList.add('valid');
@@ -104,7 +114,17 @@ function validateTS()
             return true;
         }
         else
-            return false;
+        {
+            if(check())
+            {
+                document.getElementById('tensach').classList.remove('invalid');
+                document.getElementById('tensach').classList.add('valid');
+                document.getElementById('ts-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
@@ -397,6 +417,7 @@ function themsach()
     validateTL(); 
     validateNXB(); 
     validateSL();
+    console.log(validateMS(), validateTS(), validateTTG(), validateTL(), validateNXB(), validateSL());
     if(validateMS() && validateTS() && validateTTG() && validateTL() && validateNXB() && validateSL())
     {
         let check = confirm("Bạn có chắc chắn muốn thêm sách này?");
