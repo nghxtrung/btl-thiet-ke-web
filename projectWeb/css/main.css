@@ -283,7 +283,7 @@ th, td{
 }
 .action,
 .action:hover{
-    color: #271756;;
+    color: #271756;
 }
 input:focus, select:focus{
     outline: none;
@@ -315,6 +315,18 @@ tr th{
 }
 .btn:focus {
     box-shadow: none;
+}
+tbody tr:nth-child(odd)
+{
+    background-color: #d4d4d4;
+}
+tbody tr:hover{
+    cursor: pointer;
+    background-color: #c5c4c4;
+    transition: 0.7s;
+}
+tbody tr:hover td{
+    color: #4000ff;
 }
 /* Responsive */
 
