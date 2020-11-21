@@ -58,7 +58,7 @@ function validateMPM()
     }
     else
     {
-        if(check())
+        if(dmmt.length===0)
         {
             document.getElementById('maphieumuon').classList.remove('invalid');
             document.getElementById('maphieumuon').classList.add('valid');
@@ -66,7 +66,17 @@ function validateMPM()
             return true;
         }
         else
-            return false;
+        {
+            if(check())
+            {
+                document.getElementById('maphieumuon').classList.remove('invalid');
+                document.getElementById('maphieumuon').classList.add('valid');
+                document.getElementById('mpm-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
@@ -177,6 +187,7 @@ function validateMSM2(id)
 
 function validateMSV()
 {
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     let masinhvien = document.getElementById('masinhvien').value;
     let msvValidate = /^[\d]{9}$/;
     if(isEmpty(masinhvien))
@@ -196,10 +207,7 @@ function validateMSV()
     }
     else
     {
-        document.getElementById('masinhvien').classList.remove('invalid');
-        document.getElementById('masinhvien').classList.add('valid');
-        document.getElementById('msv-error').innerHTML = '';
-        if(checkDuplicate())
+        if(dmmt.length===0)
         {
             document.getElementById('masinhvien').classList.remove('invalid');
             document.getElementById('masinhvien').classList.add('valid');
@@ -207,7 +215,20 @@ function validateMSV()
             return true;
         }
         else
-            return false;
+        {
+            document.getElementById('masinhvien').classList.remove('invalid');
+            document.getElementById('masinhvien').classList.add('valid');
+            document.getElementById('msv-error').innerHTML = '';
+            if(checkDuplicate())
+            {
+                document.getElementById('masinhvien').classList.remove('invalid');
+                document.getElementById('masinhvien').classList.add('valid');
+                document.getElementById('msv-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
@@ -249,6 +270,7 @@ function validateMSV2(id)
 
 function validateNGM()
 {
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     let ngaymuon = new Date(`${document.getElementById('ngaymuon').value}`);
     if(isNaN(ngaymuon.getTime()))
     {
@@ -260,18 +282,28 @@ function validateNGM()
     }
     else
     {
-        document.getElementById('ngaymuon').classList.remove('invalid');
-        document.getElementById('ngaymuon').classList.remove('valid');
-        document.getElementById('ngm-error').innerHTML = '';
-        if(checkDuplicate())
+        if(dmmt.length===0)
         {
             document.getElementById('ngaymuon').classList.remove('invalid');
-            document.getElementById('ngaymuon').classList.add('valid');
+            document.getElementById('ngaymuon').classList.remove('valid');
             document.getElementById('ngm-error').innerHTML = '';
             return true;
         }
         else
-            return false;
+        {
+            document.getElementById('ngaymuon').classList.remove('invalid');
+            document.getElementById('ngaymuon').classList.remove('valid');
+            document.getElementById('ngm-error').innerHTML = '';
+            if(checkDuplicate())
+            {
+                document.getElementById('ngaymuon').classList.remove('invalid');
+                document.getElementById('ngaymuon').classList.add('valid');
+                document.getElementById('ngm-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
@@ -305,6 +337,7 @@ function validateNGM2(id)
 
 function validateNGTR()
 {
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     let ngaymuon = new Date(`${document.getElementById('ngaymuon').value}`);
     let ngaytra = new Date(`${document.getElementById('ngaytra').value}`);
     if(isNaN(ngaytra.getTime()))
@@ -325,18 +358,28 @@ function validateNGTR()
     }
     else
     {
-        document.getElementById('ngaytra').classList.remove('invalid');
-        document.getElementById('ngaytra').classList.remove('valid');
-        document.getElementById('ngtr-error').innerHTML = '';
-        if(checkDuplicate())
+        if(dmmt.length===0)
         {
             document.getElementById('ngaytra').classList.remove('invalid');
-            document.getElementById('ngaytra').classList.add('valid');
+            document.getElementById('ngaytra').classList.remove('valid');
             document.getElementById('ngtr-error').innerHTML = '';
             return true;
         }
         else
-            return false;
+        {
+            document.getElementById('ngaytra').classList.remove('invalid');
+            document.getElementById('ngaytra').classList.remove('valid');
+            document.getElementById('ngtr-error').innerHTML = '';
+            if(checkDuplicate())
+            {
+                document.getElementById('ngaytra').classList.remove('invalid');
+                document.getElementById('ngaytra').classList.add('valid');
+                document.getElementById('ngtr-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
