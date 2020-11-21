@@ -65,9 +65,11 @@
               </div>
                 <div class="form-2">
                   <div class="tts">Danh mục sách</div>
-                  <div>
-                    <div style="text-align: center; margin: -1.5rem 0 1rem 0;">
-                      <input class="input3" placeholder="Tìm kiếm theo Mã sách, Tên sách & Tên tác giả" id="timkiemsach">
+                  <div class="">
+                    <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
+                      <span>
+                        <input class="input3" placeholder="Tìm kiếm theo Mã sách, Tên sách & Tên tác giả" id="timkiemsach">
+                      </span>
                       <span style="margin-left: 0.25rem;">
                         <select class="select1" id="loctl">
                           <option disabled selected>Lọc theo thể loại</option>
@@ -89,25 +91,29 @@
                           <option>Hết</option>
                         </select>
                       </span>
-                      <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemsach()">Tìm kiếm</button></span>
-                      <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txsach()">Tải xuống</button></span>
+                      <span>
+                        <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger btn1" onclick="timkiemsach()">Tìm kiếm</button></span>
+                        <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger btn1" onclick="txsach()">Tải xuống</button></span>
+                      </span>
                     </div>
                   </div>
                   <div>
-                    <table class="table-striped" border="1" cellspacing="0" id="dms">
-                      <tr>
-                        <th class="td1">STT</th>
-                        <th class="td2">Mã sách</th>
-                        <th class="td3">Tên sách</th>
-                        <th class="td4">Tên tác giả</th>
-                        <th class="td5">Thể loại</th>
-                        <th class="td6">NXB</th>
-                        <th class="td7">SL</th>
-                        <th class="td8">Thao tác</th>
-                      </tr>
-                      <tr>
-                        <td colspan="8">Không tìm thấy dữ liệu</td>
-                      </tr>
+                    <table class="table1 table-striped" cellspacing="0" id="dms">
+                        <tr>
+                          <th class="td1">STT</th>
+                          <th class="td2">Mã sách</th>
+                          <th class="td3">Tên sách</th>
+                          <th class="td4">Tên tác giả</th>
+                          <th class="td5">Thể loại</th>
+                          <th class="td6">NXB</th>
+                          <th class="td7">SL</th>
+                          <th class="td8">Thao tác</th>
+                        </tr>
+                      <tbody>
+                        <tr>
+                          <td colspan="8">Không tìm thấy dữ liệu</td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                   <div id="pagination"></div>
