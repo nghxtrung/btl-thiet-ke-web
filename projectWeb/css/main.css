@@ -328,6 +328,9 @@ tbody tr:hover{
 tbody tr:hover td{
     color: #4000ff;
 }
+.fa-bars{
+    font-size: 70%;
+}
 /* Responsive */
 
 @media only screen and (max-width: 1405px){
