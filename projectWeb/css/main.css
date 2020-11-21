@@ -316,10 +316,6 @@ tr th{
 .btn:focus {
     box-shadow: none;
 }
-.table-hover{
-    cursor: pointer;
-    color: black;
-}
 /* Responsive */
 
 @media only screen and (max-width: 1405px){
