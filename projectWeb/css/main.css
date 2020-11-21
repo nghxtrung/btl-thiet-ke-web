@@ -454,7 +454,7 @@ tbody tr:hover td{
         white-space: nowrap;
         font-weight: bold;
         text-align: left;
-        padding-top: 1rem;
+        padding-top: 0.6rem;
 	}	
 	table.table1 tbody tr td:nth-of-type(1):before { content: "STT"; }
 	table.table1 tbody tr td:nth-of-type(2):before { content: "Mã Sách"; }
@@ -543,6 +543,9 @@ tbody tr:hover td{
     }
 }
 @media only screen and (max-width: 565px){
+    #ngm-error, #ngtr-error{
+        margin-left: 0rem;
+    }
     .form-1{
         width: 95%;
         height: 100%;
@@ -650,6 +653,12 @@ tbody tr:hover td{
         box-shadow: 0rem 0rem 1rem black;
         background-color: #eeefef;
         opacity: 90%;
+    }
+}
+
+@media only screen and (max-width: 365px){
+    th, td{
+        font-size: 0.8rem;
     }
 }
 
