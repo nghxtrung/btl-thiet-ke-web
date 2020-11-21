@@ -435,6 +435,17 @@ tr th{
 	td:nth-of-type(7):before { content: "SL"; }
     td:nth-of-type(8):before { content: "Thao tác"; }
 
+    .form-1{
+        width: 100%;
+        height: 100%;
+        padding-bottom: 3rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        opacity: 90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+
     .form-2{
         width: 100%;
         height: 100%;
@@ -455,6 +466,9 @@ tr th{
         /* background-repeat: no-repeat; */
         background-repeat: repeat-y;
         height: 600vh;
+    }
+    .bt1{
+        margin: 0 auto;
     }
 }
 

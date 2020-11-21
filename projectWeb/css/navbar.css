@@ -65,3 +65,23 @@ button:focus{
     }
 
 }
+
+@media only screen and (max-width: 550px){
+    .logogtvt{
+        width: 15rem;
+    }
+    .gtvt{
+        margin-top: 1rem;
+        margin-left: 1rem;
+    }
+    header{
+        width: 100%;
+        height: 4.5rem;
+    }
+    .navbar-toggler{
+        position: absolute;
+        right: 2rem;
+        top: -4rem;
+        font-size: 1.8rem;
+    }
+}
