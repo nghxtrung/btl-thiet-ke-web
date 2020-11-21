@@ -1,6 +1,7 @@
 .nav-bar{
     width: 100%;
     background-color: #feef78;
+    padding: 0;
 }
 ul li{
     display: inline-block;
@@ -20,20 +21,6 @@ ul li{
     background-color: #fa6166;
 }
 .nav-pills .nav-link{
-    border-radius: 3rem;
-}
-.logo{
-    margin-left: 0rem;
-    margin-right: 0rem;
-}
-ul .logo{
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-ul .logo:hover{
-    background-color: #fa6166;
-    padding-left: 2rem;
-    padding-right: 2rem;
     border-radius: 3rem;
 }
 button:focus{

@@ -391,9 +391,21 @@ tbody tr:hover td{
         border-radius: 0.75rem;
         margin-bottom: 1rem;
     }
+    .input4{
+        width: 70%;
+        padding: 0.62rem 0 0.62rem 1rem !important;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
     .select1{
         width: 70%;
         padding: 0.62rem 0 0.62rem 1rem !important;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    .select2{
+        width: 70%;
+        padding: 0.62rem 1.5rem 0.62rem 1rem !important;
         border-radius: 0.75rem;
         margin-bottom: 1rem;
     }
@@ -409,14 +421,14 @@ tbody tr:hover td{
     table tr th{ 
 		display: none; 
     }
-    .table1, .table1 tr, .table1 td{
+    .table1, .table1 tr, .table1 td, .table2, .table2 tr, .table2 td, .table3, .table3 tr, .table3 td{
         display: block;
         width: 100%;
     }
-    .table1 tr{
+    .table1 tr, .table2 tr, .table3 tr{
         margin-bottom: 1rem;
     }
-    .table1 td{
+    .table1 td, .table2 td, .table3 td{
         text-align: right;
         padding-left: 50%;
         position: relative;
@@ -444,14 +456,41 @@ tbody tr:hover td{
         text-align: left;
         padding-top: 1rem;
 	}	
-	td:nth-of-type(1):before { content: "STT"; }
+	table.table1 tbody tr td:nth-of-type(1):before { content: "STT"; }
+	table.table1 tbody tr td:nth-of-type(2):before { content: "Mã Sách"; }
+	table.table1 tbody tr td:nth-of-type(3):before { content: "Tên sách"; }
+	table.table1 tbody tr td:nth-of-type(4):before { content: "Tên tác giả"; }
+	table.table1 tbody tr td:nth-of-type(5):before { content: "Thể loại"; }
+	table.table1 tbody tr td:nth-of-type(6):before { content: "NXB"; }
+	table.table1 tbody tr td:nth-of-type(7):before { content: "SL"; }
+    table.table1 tbody tr td:nth-of-type(8):before { content: "Thao tác"; }
+
+
+    table.table2 tbody tr td:nth-of-type(1):before { content: "STT"; }
+	table.table2 tbody tr td:nth-of-type(2):before { content: "Mã phiếu mượn"; }
+	table.table2 tbody tr td:nth-of-type(3):before { content: "Mã sách"; }
+	table.table2 tbody tr td:nth-of-type(4):before { content: "Mã sinh viên"; }
+	table.table2 tbody tr td:nth-of-type(5):before { content: "Ngày mượn"; }
+	table.table2 tbody tr td:nth-of-type(6):before { content: "Ngày trả"; }
+	table.table2 tbody tr td:nth-of-type(7):before { content: "SL"; }
+    table.table2 tbody tr td:nth-of-type(8):before { content: "Thao tác"; }
+
+    table.table3 tbody tr td:nth-of-type(1):before { content: "STT"; }
+	table.table3 tbody tr td:nth-of-type(2):before { content: "Mã phiếu mượn"; }
+	table.table3 tbody tr td:nth-of-type(3):before { content: "Mã sách"; }
+	table.table3 tbody tr td:nth-of-type(4):before { content: "Mã sinh viên"; }
+	table.table3 tbody tr td:nth-of-type(5):before { content: "Ngày mượn"; }
+	table.table3 tbody tr td:nth-of-type(6):before { content: "Ngày trả"; }
+	table.table3 tbody tr td:nth-of-type(7):before { content: "SL"; }
+
+    /* td:nth-of-type(1):before { content: "STT"; }
 	td:nth-of-type(2):before { content: "Mã Sách"; }
 	td:nth-of-type(3):before { content: "Tên sách"; }
 	td:nth-of-type(4):before { content: "Tên tác giả"; }
 	td:nth-of-type(5):before { content: "Thể loại"; }
 	td:nth-of-type(6):before { content: "NXB"; }
 	td:nth-of-type(7):before { content: "SL"; }
-    td:nth-of-type(8):before { content: "Thao tác"; }
+    td:nth-of-type(8):before { content: "Thao tác"; } */
     .form-1{
         width: 30rem;
         height: 100%;
@@ -462,7 +501,26 @@ tbody tr:hover td{
         margin: 0 auto;
         margin-bottom: 1.5rem;
     }
+    .form-1b{
+        width: 29rem;
+        height: 100%;
+        padding-bottom: 3rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        opacity: 90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
     .form-2{
+        width: 95%;
+        height: 100%;
+        padding-bottom: 4rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        margin: 0 auto;
+        opacity: 90%;
+    }
+    .form-2b{
         width: 95%;
         height: 100%;
         padding-bottom: 4rem;
@@ -481,11 +539,21 @@ tbody tr:hover td{
         background-position: center;
         /* background-repeat: no-repeat; */
         background-repeat: repeat-y;
-        height: 600vh;
+        height: 1000vh;
     }
 }
 @media only screen and (max-width: 565px){
     .form-1{
+        width: 95%;
+        height: 100%;
+        padding-bottom: 3rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        opacity: 90%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+    .form-1b{
         width: 95%;
         height: 100%;
         padding-bottom: 3rem;
@@ -503,12 +571,39 @@ tbody tr:hover td{
         display: flex;
         flex-direction: column;
     }
+    .tt2{
+        color:  #271756 ;
+        font-weight: bold;
+        margin-left: 1.5rem;
+        margin-bottom: 0.25rem;
+        display: flex;
+        flex-direction: column;
+    }
     .sl1{
         width: 100%;
         margin-right: 0;
         float: none;
     }
+    .sl2{
+        width: 100%;
+        float: none;
+        margin-right: 0rem;
+    }
+    .ipd1{
+        margin-left: 0;
+    }
+    .ipd2{
+        margin-left: 0;
+    }
+    .datee{
+        width: 92%;
+    }
     .input1{
+        border-radius: 10rem;
+        width: 100%;
+        padding: 0.25rem 0 0.25rem 1rem !important;
+    }
+    .input2{
         border-radius: 10rem;
         width: 100%;
         padding: 0.25rem 0 0.25rem 1rem !important;
@@ -526,6 +621,18 @@ tbody tr:hover td{
         margin-bottom: 1rem;
     }
     .select3{
+        width: 90%;
+        padding: 0.62rem 1.5rem 0.62rem 1rem !important;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    .input4{
+        width: 90%;
+        padding: 0.62rem 0 0.62rem 1rem !important;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
+    .select2{
         width: 90%;
         padding: 0.62rem 1.5rem 0.62rem 1rem !important;
         border-radius: 0.75rem;

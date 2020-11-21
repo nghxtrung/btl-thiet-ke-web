@@ -134,8 +134,8 @@
                   </span>
                 </div>
                 <div class="tt">Mã sinh viên: <span class="ip"><input  class="input2" placeholder="Nhập mã sinh viên gồm 9 chữ số" id="masinhvien"><br><span class="error" id="msv-error"></span></span></div>
-                <div class="tt2">Ngày mượn: <span class="ipd1"><input type="date" id="ngaymuon"><br><span class="error" id="ngm-error"></span></span></div>
-                <div class="tt2">Ngày trả: <span class="ipd2"><input type="date" id="ngaytra"><br><span class="error" id="ngtr-error"></span></span></div>
+                <div class="tt2">Ngày mượn: <span class="ipd1"><input class="datee" type="date" id="ngaymuon"><br><span class="error" id="ngm-error"></span></span></div>
+                <div class="tt2">Ngày trả: <span class="ipd2"><input class="datee" type="date" id="ngaytra"><br><span class="error" id="ngtr-error"></span></span></div>
                 <div class="tt">Số lượng mượn: <span class="ip"><input  class="input2" placeholder="Nhập số lượng sách mượn" id="soluongmuon"><br><span class="error" id="slm-error"></span></span></div>
                 <div class="bt"><button type="button" class="btn btn-outline-danger" id="nut2" onclick="themmt()">Thêm mới</button></div>
                 <span class="sync" onclick="clearinput2()"><i class="fas fa-sync-alt"></i></span>
@@ -143,8 +143,10 @@
              <div class="form-2b">
               <div class="tts">Danh mục mượn - trả sách</div>
               <div>
-                <div style="text-align: center; margin: -1.5rem 0 1rem 0;">
-                  <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemmt">
+                <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
+                  <span>
+                    <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemmt">
+                  </span>
                   <span style="margin-left: 0.25rem;">
                     <select class="select2" id="loctg">
                       <option disabled selected>Lọc theo thời gian</option>
@@ -153,13 +155,15 @@
                       <option>Quá hạn</option>
                     </select>
                   </span>
-                  <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemmt()">Tìm kiếm</button></span>
-                  <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txmt()">Tải xuống</button></span>
+                  <span>
+                    <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemmt()">Tìm kiếm</button></span>
+                    <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txmt()">Tải xuống</button></span>
+                  </span>
                   
                 </div>
               </div>
               <div>
-                <table border="1" cellspacing="0" id="dmmt">
+                <table class="table2" border="1" cellspacing="0" id="dmmt">
                   <tr>
                     <th class="td1">STT</th>
                     <th class="td2b">Mã phiếu mượn</th>
@@ -170,9 +174,11 @@
                     <th class="td7b">SL</th>
                     <th class="td8b">Thao tác</th>
                   </tr>
-                  <tr>
-                    <td class="no-data" colspan="8">Không tìm thấy dữ liệu</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td colspan="8">Không tìm thấy dữ liệu</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -182,14 +188,18 @@
           <div class="form-2">
             <div class="tts">Lịch sử mượn - trả sách</div>
             <div>
-              <div style="text-align: center; margin: -1.5rem 0 1rem 0;">
-                <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemls">
-                <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemls()">Tìm kiếm</button></span>
-                <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txlichsu()">Tải xuống</button></span>
+              <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
+                <span>
+                  <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemls">
+                </span>
+                <span>
+                  <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemls()">Tìm kiếm</button></span>
+                  <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txlichsu()">Tải xuống</button></span>
+                </span>
               </div>
             </div>
             <div>
-              <table border="1" cellspacing="0" id="lsmt">
+              <table class="table3" border="1" cellspacing="0" id="lsmt">
                 <tr>
                     <th class="td1">STT</th>
                     <th class="td2b">Mã phiếu mượn</th>
@@ -199,9 +209,11 @@
                     <th class="td6b">Ngày trả</th>
                     <th class="td7b">SL</th>
                 </tr>
-                <tr>
-                  <td colspan="7">Không tìm thấy dữ liệu</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td colspan="7">Không tìm thấy dữ liệu</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
