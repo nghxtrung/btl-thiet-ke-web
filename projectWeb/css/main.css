@@ -272,7 +272,7 @@ th, td{
     padding-top: 0.35rem;
 }
 .bg{
-    height: 7rem;
+    height: 8rem;
     background-color: transparent;
 }
 .imggg{
@@ -464,6 +464,10 @@ footer{
 }
 
 @media only screen and (max-width: 1000px){
+    .bg{
+        height: 0rem;
+        background-color: transparent;
+    }
     .footer1{
         width: 50%;
         color: #271756;
