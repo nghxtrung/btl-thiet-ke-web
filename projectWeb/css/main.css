@@ -6,9 +6,8 @@ body{
 body, html{
     height: 100%;
 }
-.imgmain{
-    width: 100%;
-    height: 100%;
+.navbar-nav{
+    margin-left: 2rem;
 }
 a{
     text-decoration: none !important;
@@ -464,6 +463,9 @@ footer{
 }
 
 @media only screen and (max-width: 1000px){
+    .navbar-nav{
+        margin-left: 0rem;
+    }
     .bg{
         height: 0rem;
         background-color: transparent;
