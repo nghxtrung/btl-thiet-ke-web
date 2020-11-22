@@ -475,6 +475,75 @@ function validateSLM()
     }
 }
 
+function validateSLM2(id)
+{
+    let soluongmuon = document.getElementById('soluongmuon').value;
+    let masachmuon = document.getElementById('masachmuon').value;
+    function ktsl()
+    {
+        let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+        let slmbd;
+        dmmt.forEach(function(mt,stt)
+        {
+            if(stt === id)
+                SLM = Number(`${mt.slm}`);
+        });
+        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+        soluongmuon = Number(`${soluongmuon.trim()}`);
+        let kt = dms.every(function(sach)
+        {
+            if(slmbd===soluongmuon)
+            {
+                return true;
+            }
+            else
+            {
+                if(sach.ms.trim() === masachmuon.trim())
+                {
+                    sach.sl = Number(`${sach.sl}`);
+                    if(soluongmuon>(sach.sl+slmbd))
+                        return false;           
+                }
+                return true;
+            }
+        });
+        return kt;
+    }
+    if(isEmpty(soluongmuon))
+    {
+        document.getElementById('soluongmuon').classList.remove('valid');
+        document.getElementById('soluongmuon').classList.add('invalid');
+        document.getElementById('slm-error').innerHTML = 'Vui lòng không bỏ trống';
+        return false;
+    }
+    else if(soluongmuon.trim()<=0)
+    {
+        soluongmuon = '';
+        document.getElementById('soluongmuon').classList.remove('valid');
+        document.getElementById('soluongmuon').classList.add('invalid');
+        document.getElementById('slm-error').innerHTML = 'Vui lòng nhập lớn hơn 0';
+        return false;
+    }
+    else
+    {
+        if(ktsl())
+        {
+            document.getElementById('soluongmuon').classList.remove('invalid');
+            document.getElementById('soluongmuon').classList.add('valid');
+            document.getElementById('slm-error').innerHTML = '';
+            return true;
+        }
+        else
+        {
+            soluongmuon = '';
+            document.getElementById('soluongmuon').classList.remove('valid');
+            document.getElementById('soluongmuon').classList.add('invalid');
+            document.getElementById('slm-error').innerHTML = 'Vui lòng nhập nhỏ hơn hoặc bằng';
+            return false;
+        }
+    }
+}
+
 function checkSL()
 {
     let soluongmuon = document.getElementById('soluongmuon').value;
@@ -672,18 +741,20 @@ function themmt()
 function luuDmmt()
 {
     let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
-    let bangDmmt = `<th class="td1">STT</th>
+    let bangDmmt = `<tr class="header">
+    <th class="td1">STT</th>
     <th class="td2b">Mã phiếu mượn</th>
     <th class="td3b">Mã sách</th>
     <th class="td4b">Mã sinh viên</th>
     <th class="td5b">Ngày mượn</th>
     <th class="td6b">Ngày trả</th>
     <th class="td7b">SL</th>
-    <th class="td8b">Thao tác</th>`;
+    <th class="td8b">Thao tác</th>
+    </tr>`;
     if(dmmt.length === 0)
     {
         bangDmmt += `<tr>
-        <td colspan="8">Không tìm thấy dữ liệu</td>
+        <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
         </tr>`;
     }
     dmmt.forEach(function(mt,stt)
@@ -782,6 +853,12 @@ function xoamt(id)
 function suamt(id)
 {
     clearinput2();
+    luuDmmt();
+    changeStyleElement(id);
+    if(checkWidth1())
+        scollToTop();
+    else if(checkWidth2())
+        scollToForm1();
     let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     dmmt.forEach(function(mt,stt)
     {
@@ -827,6 +904,7 @@ function suamt(id)
             });
             inputMPM.setAttribute('onkeyup','validateMPM2('+id+')');
             inputMSV.setAttribute('onkeyup','validateMSV2('+id+')');
+            inputSLM.setAttribute('onkeyup','validateSLM2('+id+')');
         }
     });
 }
@@ -840,8 +918,8 @@ function capnhatmt(id)
     validateMSV2(id); 
     validateNGM2(id); 
     validateNGTR2(id); 
-    validateSLM();
-    if(validateMPM2(id) && validateMSM2(id) && validateMSV2(id) && validateNGM2(id) && validateNGTR2(id) && validateSLM())
+    validateSLM2(id);
+    if(validateMPM2(id) && validateMSM2(id) && validateMSV2(id) && validateNGM2(id) && validateNGTR2(id) && validateSLM2(id))
     {
         let check = confirm("Bạn có chắc chắn muốn cập nhật thông tin này?");
         if(check)
@@ -906,6 +984,11 @@ function capnhatmt(id)
             localStorage.setItem('dmmt',JSON.stringify(dmmt));
             luuDmmt();
             clearinput2();
+            if(checkWidth1())
+            {
+                scollToElement(id);
+                changeStyleElement(id);
+            }
             document.getElementById('nut2').setAttribute('onclick','themmt()');
             document.getElementById('nut2').innerHTML = 'Thêm mới';
             inputMPM.setAttribute('onblur','validateMPM()');
@@ -934,6 +1017,7 @@ function capnhatmt(id)
             inputNGTR.addEventListener("onchange",checkDuplicate);
             inputMPM.setAttribute('onkeyup','validateMPM()');
             inputMSV.setAttribute('onkeyup','validateMSV()');
+            inputSLM.setAttribute('onkeyup','validateSLM()');
         }
     }
 }
@@ -988,7 +1072,7 @@ function timkiemmt()
                 }
             }
         });
-        let bangkq = `<tr>
+        let bangkq = `<tr class="header">
         <th class="td1">STT</th>
         <th class="td2b">Mã phiếu mượn</th>
         <th class="td3b">Mã sách</th>
@@ -1001,7 +1085,7 @@ function timkiemmt()
         if(kq1.length===0 && kq2.length===0 && kq3.length===0)
         {
             bangkq += `<tr>
-            <td colspan="8">Không tìm thấy dữ liệu</td>
+            <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
             </tr>`;
             document.getElementById('dmmt').innerHTML = bangkq;
         }

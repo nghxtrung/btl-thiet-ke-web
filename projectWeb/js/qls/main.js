@@ -3,6 +3,64 @@ function isEmpty(input)
     return ((input === '') || (input.length === 0));
 }
 
+function checkNavbar()
+{
+    let navItem = document.getElementsByClassName('nav-link');
+    for(let i=0;i<navItem.length;++i)
+    {
+        navItem[i].onclick = function()
+        {
+            document.getElementById('collapsibleNavbar').classList.remove('show');
+        }
+    }
+}
+
+function checkWidth1()
+{
+    let x = window.matchMedia("(max-width: 1405px)");
+    if(x.matches)
+        return true;
+    else
+        return false;    
+}
+
+function checkWidth2()
+{
+    let x = window.matchMedia("(max-width: 1000px)");
+    if(x.matches)
+        return true;
+    else
+        return false;
+}
+
+function scollToTop()
+{
+    window.scrollTo(0,0);
+}
+
+function scollToForm1()
+{
+    let form = document.querySelector('.form-1');
+    form.scrollIntoView();
+}
+
+function scollToElement(id)
+{
+    let elem = document.querySelector('#s'+(id+1));
+    elem.scrollIntoView();
+}
+
+function changeStyleElement(id)
+{
+    let elem = document.querySelector('#s'+(id+1));
+    let elem2 = elem.getElementsByTagName('td');
+    elem.style.backgroundColor = "#c5c4c4";
+    for(let i=0;i<elem2.length;++i)
+    {
+        elem2[i].style.color = '#4000ff';
+    }
+}
+
 function validateMS()
 {
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
@@ -417,7 +475,6 @@ function themsach()
     validateTL(); 
     validateNXB(); 
     validateSL();
-    console.log(validateMS(), validateTS(), validateTTG(), validateTL(), validateNXB(), validateSL());
     if(validateMS() && validateTS() && validateTTG() && validateTL() && validateNXB() && validateSL())
     {
         let check = confirm("Bạn có chắc chắn muốn thêm sách này?");
@@ -449,7 +506,7 @@ function themsach()
 function luuDms()
 {
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
-    let bangDms = `<tr>
+    let bangDms = `<tr class="header">
     <th class="td1">STT</th>
     <th class="td2">Mã sách</th>
     <th class="td3">Tên sách</th>
@@ -462,14 +519,14 @@ function luuDms()
     if(dms.length === 0)
     {
         bangDms += `<tr>
-        <td colspan="8">Không tìm thấy dữ liệu</td>
+        <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
         </tr>`;
     }
     let chonMs = `<option value="" disabled selected>Chọn mã sách</option>`;
     dms.forEach(function(sach,stt){
         let id = stt;
         ++stt;
-        bangDms += `<tr onclick="suasach(${id})">
+        bangDms += `<tr onclick="suasach(${id})" id="s${stt}">
         <td class="td1">${stt}</td>
         <td class="td2">${sach.ms}</td>
         <td class="td3">${sach.ts}</td>
@@ -567,6 +624,12 @@ function clearinput1()
 function suasach(id)
 {
     clearinput1();
+    luuDms();
+    changeStyleElement(id);
+    if(checkWidth1())
+        scollToTop();
+    else if(checkWidth2())
+        scollToForm1();    
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
     dms.forEach(function(sach,stt)
     {
@@ -647,6 +710,11 @@ function capnhatsach(id)
             localStorage.setItem('dms',JSON.stringify(dms));
             luuDms();
             clearinput1();
+            if(checkWidth1())
+            {
+                scollToElement(id);
+                changeStyleElement(id);
+            }
             document.getElementById('nut1').removeAttribute('onclick');
             document.getElementById('nut1').setAttribute('onclick','themsach()');
             document.getElementById('nut1').innerHTML = 'Thêm mới';
@@ -726,7 +794,7 @@ function timkiemsach()
                 }
             }
         });
-        let bangkq = `<tr>
+        let bangkq = `<tr class="header">
         <th class="td1">STT</th>
         <th class="td2">Mã sách</th>
         <th class="td3">Tên sách</th>
@@ -739,7 +807,7 @@ function timkiemsach()
         if(kq.length === 0)
         {
             bangkq += `<tr>
-            <td colspan="8">Không tìm thấy dữ liệu</td>
+            <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
             </tr>`;
         }
         kq.forEach(function(sach,stt){

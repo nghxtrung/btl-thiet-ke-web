@@ -99,7 +99,7 @@
                   </div>
                   <div>
                     <table class="table1" cellspacing="0" id="dms">
-                        <tr>
+                        <tr class="header">
                           <th class="td1">STT</th>
                           <th class="td2">Mã sách</th>
                           <th class="td3">Tên sách</th>
@@ -111,7 +111,7 @@
                         </tr>
                       <tbody>
                         <tr>
-                          <td colspan="8">Không tìm thấy dữ liệu</td>
+                          <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
                         </tr>
                       </tbody>
                     </table>
@@ -164,7 +164,7 @@
               </div>
               <div>
                 <table class="table2" border="1" cellspacing="0" id="dmmt">
-                  <tr>
+                  <tr class="header">
                     <th class="td1">STT</th>
                     <th class="td2b">Mã phiếu mượn</th>
                     <th class="td3b">Mã sách</th>
@@ -176,7 +176,7 @@
                   </tr>
                   <tbody>
                     <tr>
-                      <td colspan="8">Không tìm thấy dữ liệu</td>
+                      <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
                     </tr>
                   </tbody>
                 </table>
@@ -200,7 +200,7 @@
             </div>
             <div>
               <table class="table3" border="1" cellspacing="0" id="lsmt">
-                <tr>
+                <tr class="header">
                     <th class="td1">STT</th>
                     <th class="td2b">Mã phiếu mượn</th>
                     <th class="td3b">Mã sách</th>
@@ -211,7 +211,7 @@
                 </tr>
                 <tbody>
                   <tr>
-                    <td colspan="7">Không tìm thấy dữ liệu</td>
+                    <td colspan="7" class="no-data">Không tìm thấy dữ liệu</td>
                   </tr>
                 </tbody>
               </table>
@@ -235,6 +235,7 @@
 <script>
   function loadData()
   {
+    checkNavbar();
     luuDms();
     luuDmmt();
     luuls();

@@ -1,3 +1,37 @@
+function xoamt2(id)
+{
+    let tableLength = document.getElementById("dmmt").rows.length;
+    for(let i=1;i<tableLength;++i)
+    {
+        document.getElementById("dmmt").rows[i].removeAttribute("onclick");
+    }
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    let soluongmuon;
+    let masachmuon;
+    dmmt.forEach(function(mt)
+    {
+        masachmuon = mt.msm;
+        soluongmuon = Number(`${mt.slm}`);
+    });
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    dms.forEach(function(sach)
+    {
+        if(masachmuon === sach.ms)
+        {
+            sach.sl = Number(`${sach.sl}`);
+            sach.sl += soluongmuon;
+            localStorage.setItem('dms',JSON.stringify(dms));
+            luuDms();
+        }
+    });
+    dmmt.splice(id,1);
+    localStorage.setItem('dmmt',JSON.stringify(dmmt));
+    luuDmmt();
+    clearinput2();
+    document.getElementById('nut2').setAttribute('onclick','themmt()');
+    document.getElementById('nut2').innerHTML = 'Thêm mới';
+}
+
 function trasach(id)
 {
     let tableLength = document.getElementById("dmmt").rows.length;
@@ -29,7 +63,7 @@ function trasach(id)
         });
         localStorage.setItem('ls',JSON.stringify(ls));
         luuls();
-        xoamt(id);
+        xoamt2(id);
     }
     else
     {
@@ -43,7 +77,7 @@ function trasach(id)
 function luuls()
 {
     let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
-    let bangls = `<tr>
+    let bangls = `<tr class="header">
     <th class="td1">STT</th>
     <th class="td2b">Mã phiếu mượn</th>
     <th class="td3b">Mã sách</th>
@@ -55,7 +89,7 @@ function luuls()
     if(ls.length === 0)
     {
         bangls += `<tr>
-        <td colspan="7">Không tìm thấy dữ liệu</td>
+        <td colspan="7" class="no-data">Không tìm thấy dữ liệu</td>
         </tr>`;
     }
     ls.forEach(function(ls,stt)
@@ -90,7 +124,7 @@ function timkiemls()
             if(ls.mpm.indexOf(tk)!=-1||ls.msm.indexOf(tk)!=-1||ls.msv.indexOf(tk)!=-1)
                     kq.push(ls);
         });
-        let bangkq = `<tr>
+        let bangkq = `<tr class="header">
         <th class="td1">STT</th>
         <th class="td2b">Mã phiếu mượn</th>
         <th class="td3b">Mã sách</th>
@@ -102,7 +136,7 @@ function timkiemls()
         if(kq.length===0)
         {
             bangkq += `<tr>
-            <td colspan="8">Không tìm thấy dữ liệu</td>
+            <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
             </tr>`;
         }
         else
