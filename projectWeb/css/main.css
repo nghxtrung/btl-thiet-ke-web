@@ -1,6 +1,3 @@
-html{
-    scroll-behavior: smooth;
-}
 body{
     padding: 0;
     margin: 0;
@@ -9,15 +6,26 @@ body{
 body, html{
     height: 100%;
 }
+.imgmain{
+    width: 100%;
+    height: 100%;
+}
 a{
     text-decoration: none !important;
 }
 li{
     list-style: none;
 }
-header{
+.header1{
     width: 100%;
     height: 7rem;
+}
+header{
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+    width: 100%;
 }
 .white{
     color: white;
@@ -263,12 +271,18 @@ th, td{
     font-size: 1.25rem;
     padding-top: 0.35rem;
 }
+.bg{
+    height: 7rem;
+    background-color: transparent;
+}
 .imggg{
-    background-image: url(../img/background.jpg);
+    margin-top: 10.5rem;
+    padding-bottom: 0rem;
+    background: url(../img/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
 }
 .error{
     color: red;
@@ -323,18 +337,67 @@ tbody tr:nth-child(odd)
 {
     background-color: #d4d4d4;
 }
-#dms tbody tr:hover,
-#dmmt tbody tr:hover{
+tbody tr:hover{
     cursor: pointer;
     background-color: #c5c4c4;
-    transition: 0.5s;
+    transition: 0.7s;
 }
-#dms tbody tr:hover td,
-#dmmt tbody tr:hover td{
+tbody tr:hover td{
     color: #4000ff;
 }
 .fa-bars{
     font-size: 70%;
+}
+/* footer */
+footer{
+    background-color: #feef78;
+    width: 100%;
+    margin-top: 9rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+.footer1{
+    width: 50%;
+    color: #271756;
+    margin-left: 10%;
+}
+.footer2{
+    width: 50%;
+    color: #271756;
+    margin-left: 22%;
+}
+.d1{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+.d2{
+    font-size: 1.2rem;
+    font-weight: 450;
+}
+.fa-facebook{
+    font-size: 1.5rem;
+    margin-right: 0.25rem;
+}
+.last{
+    border-top: 1px solid #271756;
+    width: 90%;
+    margin: auto;
+}
+.lastt{
+    padding-top: 0.5rem;
+    color: #271756;
+    font-weight: bold;
+    text-align: center;
+}
+.aaa{
+    display: flex;
+}
+.c1{
+    display: block;
+}
+.c2{
+    text-align: justify;
 }
 /* Responsive */
 
@@ -388,8 +451,29 @@ tbody tr:nth-child(odd)
         margin-bottom: 1.5rem;
     }
 }
+@media (min-width: 990px) and (max-width: 1024px){
+    .form-1{
+        margin-top: 2rem;
+        width: 29rem;
+        height: 100%;
+        padding-bottom: 3rem;
+        box-shadow: 0rem 0rem 1rem black;
+        background-color: #eeefef;
+        opacity: 90%;
+    }
+}
 
 @media only screen and (max-width: 1000px){
+    .footer1{
+        width: 50%;
+        color: #271756;
+        margin-left: 5%;
+    }
+    .footer2{
+        width: 50%;
+        color: #271756;
+        margin-left: 5%;
+    }
     .input3{
         width: 70%;
         padding: 0.62rem 0 0.62rem 1rem !important;
@@ -461,7 +545,7 @@ tbody tr:nth-child(odd)
         text-align: left;
         padding-top: 0.6rem;
 	}	
-	table.table1 tbody tr td:nth-of-type(1) { content: "STT"; }
+	table.table1 tbody tr td:nth-of-type(1):before { content: "STT"; }
 	table.table1 tbody tr td:nth-of-type(2):before { content: "Mã Sách"; }
 	table.table1 tbody tr td:nth-of-type(3):before { content: "Tên sách"; }
 	table.table1 tbody tr td:nth-of-type(4):before { content: "Tên tác giả"; }
@@ -471,7 +555,7 @@ tbody tr:nth-child(odd)
     table.table1 tbody tr td:nth-of-type(8):before { content: "Thao tác"; }
 
 
-    table.table2 tbody tr td:nth-of-type(1) { content: "STT"; }
+    table.table2 tbody tr td:nth-of-type(1):before { content: "STT"; }
 	table.table2 tbody tr td:nth-of-type(2):before { content: "Mã phiếu mượn"; }
 	table.table2 tbody tr td:nth-of-type(3):before { content: "Mã sách"; }
 	table.table2 tbody tr td:nth-of-type(4):before { content: "Mã sinh viên"; }
@@ -480,7 +564,7 @@ tbody tr:nth-child(odd)
 	table.table2 tbody tr td:nth-of-type(7):before { content: "SL"; }
     table.table2 tbody tr td:nth-of-type(8):before { content: "Thao tác"; }
 
-    table.table3 tbody tr td:nth-of-type(1) { content: "STT"; }
+    table.table3 tbody tr td:nth-of-type(1):before { content: "STT"; }
 	table.table3 tbody tr td:nth-of-type(2):before { content: "Mã phiếu mượn"; }
 	table.table3 tbody tr td:nth-of-type(3):before { content: "Mã sách"; }
 	table.table3 tbody tr td:nth-of-type(4):before { content: "Mã sinh viên"; }
@@ -488,33 +572,6 @@ tbody tr:nth-child(odd)
 	table.table3 tbody tr td:nth-of-type(6):before { content: "Ngày trả"; }
 	table.table3 tbody tr td:nth-of-type(7):before { content: "SL"; }
 
-    #dms .header{
-        display: none;
-    }
-    #dms tr .no-data{
-        border: 0;
-        padding: 0;
-        text-align: center;
-        font-weight: bold;
-    }
-    #dmmt .header{
-        display: none;
-    }
-    #dmmt tr .no-data{
-        border: 0;
-        padding: 0;
-        text-align: center;
-        font-weight: bold;
-    }
-    #lsmt .header{
-        display: none;
-    }
-    #lsmt tr .no-data{
-        border: 0;
-        padding: 0;
-        text-align: center;
-        font-weight: bold;
-    }
     /* td:nth-of-type(1):before { content: "STT"; }
 	td:nth-of-type(2):before { content: "Mã Sách"; }
 	td:nth-of-type(3):before { content: "Tên sách"; }
@@ -566,12 +623,37 @@ tbody tr:nth-child(odd)
         flex-direction: column;
     }
     .imggg{
+        margin-top: 8rem;
         background-image: url(../img/background.jpg);
         background-size: cover;
         background-position: center;
         /* background-repeat: no-repeat; */
         background-repeat: repeat-y;
-        height: 1000vh;
+    }
+}
+@media only screen and (max-width: 710px){
+    .aaa{
+        display: flex;
+        flex-direction: column;
+    }
+    .footer1{
+        width: 100%;
+        color: #271756;
+        margin-left: 0;
+        text-align: center;
+    }
+    .footer2{
+        width: 100%;
+        color: #271756;
+        margin-left: 0;
+        text-align: center;
+    }
+    .c1{
+        display: flex;
+        justify-content: center;
+    }
+    .c2{
+        text-align: left;
     }
 }
 @media only screen and (max-width: 565px){
@@ -673,24 +755,37 @@ tbody tr:nth-child(odd)
         border-radius: 0.75rem;
         margin-bottom: 1rem;
     }
-}
-
-
-@media (min-width: 990px) and (max-width: 1024px){
-    .form-1{
-        margin-top: 2rem;
-        width: 29rem;
-        height: 100%;
-        padding-bottom: 3rem;
-        box-shadow: 0rem 0rem 1rem black;
-        background-color: #eeefef;
-        opacity: 90%;
+    .imggg{
+        margin-top: 5.5rem;
+        background-image: url(../img/background.jpg);
+        background-size: cover;
+        background-position: center;
+        /* background-repeat: no-repeat; */
+        background-repeat: repeat-y;
+    }
+    .d1{
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
     }
 }
+
 
 @media only screen and (max-width: 365px){
     th, td{
         font-size: 0.8rem;
+    }
+    .d2{
+        font-size: 1rem;
+        font-weight: 450;
+    }
+    .imggg{
+        margin-top: 3.5rem;
+        background-image: url(../img/background.jpg);
+        background-size: cover;
+        background-position: center;
+        /* background-repeat: no-repeat; */
+        background-repeat: repeat-y;
     }
 }
 

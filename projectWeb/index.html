@@ -4,50 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý Thư Viện</title>
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <link rel="stylesheet" type="text/css" href="./css/navbar.css">
 </head>
 <body onload="loadData()">
-    <header>
-        <div class="gtvt"><img class="logogtvt" src="./img/main-logo.png"></div>
-    </header>
-    <nav class="navbar navbar-expand-lg nav-bar">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#qls">Trang chủ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="pill" href="#qls">Quản lý sách</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#qlmt">Quản lý mượn - trả sách</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#ls">Lịch sử mượn - trả sách</a>
-        </li> 
-        </ul>
-      </div>  
-    </nav>
-      <div class="imggg">
-        <div class="tab-content content">
-          <div id="qls" class="tab-pane pane active">
-            <div class="form">
-              <div class="form-1">
-                <div class="tts">Thông tin sách</div>
-                <div class="tt">Mã sách: <span class="ip"><input class="input1" placeholder="Nhập mã sách gồm 8 kí tự" id="masach"><br><span class="error" id="ms-error"></span></span></div>
-                <div class="tt">Tên sách: <span class="ip"><input class="input1" placeholder="Nhập tên sách" id="tensach"><br><span class="error" id="ts-error"></span></span></div>
-                <div class="tt">Tên tác giả: <span class="ip"><input class="input1" placeholder="Nhập tên tác giả" id="tentacgia"><br><span class="error" id="ttg-error"></span></span></div>
-                <div class="tt">Thể loại:
-                  <span class="ip">
-                    <select class="sl1" id="theloai">
-                      <option value="" disabled selected>Chọn thể loại</option>
+  <header>
+    <div class="header1">
+      <div class="gtvt"><img class="logogtvt" src="./img/main-logo.png"></div>
+  </div>
+  <nav class="navbar navbar-expand-lg nav-bar">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="pill" href="#tt">Trang chủ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#qls">Quản lý sách</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#qlmt">Quản lý mượn - trả sách</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#ls">Lịch sử mượn - trả sách</a>
+      </li> 
+      </ul>
+    </div>  
+  </nav>
+  </header>
+  <div class="imggg">
+    <div class="tab-content content">
+      <div id="tt" class="tab-pane pane active">
+        <img src="./img/1.jpg" alt="" class="imgmain">
+      </div>
+      <div id="qls" class="tab-pane fade">
+        <div class="form">
+          <div class="form-1">
+            <div class="tts">Thông tin sách</div>
+            <div class="tt">Mã sách: <span class="ip"><input class="input1" placeholder="Nhập mã sách gồm 8 kí tự" id="masach"><br><span class="error" id="ms-error"></span></span></div>
+            <div class="tt">Tên sách: <span class="ip"><input class="input1" placeholder="Nhập tên sách" id="tensach"><br><span class="error" id="ts-error"></span></span></div>
+            <div class="tt">Tên tác giả: <span class="ip"><input class="input1" placeholder="Nhập tên tác giả" id="tentacgia"><br><span class="error" id="ttg-error"></span></span></div>
+            <div class="tt">Thể loại:
+              <span class="ip">
+                <select class="sl1" id="theloai">
+                  <option value="" disabled selected>Chọn thể loại</option>
+                  <option>Giáo trình</option>
+                  <option>Chính trị - Pháp luật</option>
+                  <option>Khoa học - Công nghệ</option>
+                  <option>Kinh tế</option>
+                  <option>Truyện - Tiểu thuyết</option>
+                  <option>Tâm lý</option>
+                  <option>Tâm linh - Tôn giáo</option>
+                </select>
+                <br><span class="error" id="tl-error"></span>
+              </span> 
+            </div>
+            <div class="tt">Năm xuất bản: <span class="ip"><input class="input1" placeholder="Nhập năm xuất bản" id="namxuatban"><br><span class="error" id="nxb-error"></span></span></div>
+            <div class="tt">Số lượng: <span class="ip"><input class="input1" placeholder="Nhập số lượng sách" id="soluong"><br><span class="error" id="sl-error"></span></div>
+            <div class="bt bt1"><button type="button" class="btn btn-outline-danger" id="nut1" onclick="themsach()">Thêm mới</button></div>
+            <span class="sync" onclick="clearinput1()"><i class="fas fa-sync-alt"></i></span>
+          </div>
+            <div class="form-2">
+              <div class="tts">Danh mục sách</div>
+              <div class="">
+                <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
+                  <span>
+                    <input class="input3" placeholder="Tìm kiếm theo Mã sách, Tên sách & Tên tác giả" id="timkiemsach">
+                  </span>
+                  <span style="margin-left: 0.25rem;">
+                    <select class="select1" id="loctl">
+                      <option disabled selected>Lọc theo thể loại</option>
+                      <option>Tất cả</option>
                       <option>Giáo trình</option>
                       <option>Chính trị - Pháp luật</option>
                       <option>Khoa học - Công nghệ</option>
@@ -56,176 +87,174 @@
                       <option>Tâm lý</option>
                       <option>Tâm linh - Tôn giáo</option>
                     </select>
-                    <br><span class="error" id="tl-error"></span>
-                  </span> 
-                </div>
-                <div class="tt">Năm xuất bản: <span class="ip"><input class="input1" placeholder="Nhập năm xuất bản" id="namxuatban"><br><span class="error" id="nxb-error"></span></span></div>
-                <div class="tt">Số lượng: <span class="ip"><input class="input1" placeholder="Nhập số lượng sách" id="soluong"><br><span class="error" id="sl-error"></span></div>
-                <div class="bt bt1"><button type="button" class="btn btn-outline-danger" id="nut1" onclick="themsach()">Thêm mới</button></div>
-                <span class="sync" onclick="clearinput1()"><i class="fas fa-sync-alt"></i></span>
-              </div>
-                <div class="form-2">
-                  <div class="tts">Danh mục sách</div>
-                  <div class="">
-                    <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
-                      <span>
-                        <input class="input3" placeholder="Tìm kiếm theo Mã sách, Tên sách & Tên tác giả" id="timkiemsach">
-                      </span>
-                      <span style="margin-left: 0.25rem;">
-                        <select class="select1" id="loctl">
-                          <option disabled selected>Lọc theo thể loại</option>
-                          <option>Tất cả</option>
-                          <option>Giáo trình</option>
-                          <option>Chính trị - Pháp luật</option>
-                          <option>Khoa học - Công nghệ</option>
-                          <option>Kinh tế</option>
-                          <option>Truyện - Tiểu thuyết</option>
-                          <option>Tâm lý</option>
-                          <option>Tâm linh - Tôn giáo</option>
-                        </select>
-                      </span>
-                      <span style="margin-left: 0.25rem;">
-                        <select class="select3" id="locsl">
-                          <option disabled selected>Lọc theo số lượng</option>
-                          <option>Tất cả</option>
-                          <option>Còn</option>
-                          <option>Hết</option>
-                        </select>
-                      </span>
-                      <span>
-                        <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger btn1" onclick="timkiemsach()">Tìm kiếm</button></span>
-                        <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger btn1" onclick="txsach()">Tải xuống</button></span>
-                      </span>
-                    </div>
-                  </div>
-                  <div>
-                    <table class="table1" cellspacing="0" id="dms">
-                        <tr class="header">
-                          <th class="td1">STT</th>
-                          <th class="td2">Mã sách</th>
-                          <th class="td3">Tên sách</th>
-                          <th class="td4">Tên tác giả</th>
-                          <th class="td5">Thể loại</th>
-                          <th class="td6">NXB</th>
-                          <th class="td7">SL</th>
-                          <th class="td8">Thao tác</th>
-                        </tr>
-                      <tbody>
-                        <tr>
-                          <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div id="pagination"></div>
-                </div>
-            </div>
-          </div> 
-          <div id="qlmt" class="tab-pane fade">
-            <div class="form">
-              <div class="form-1b">
-                <div class="tts">Danh mục mượn - trả sách</div>
-                <div class="tt">Mã phiếu mượn: <span class="ip"><input  class="input2" placeholder="Nhập mã phiếu mượn sách gồm 6 kí tự" id="maphieumuon"><br><span class="error" id="mpm-error"></span></span></div>
-                <div class="tt">Mã sách: 
-                  <span class="ip">
-                    <select class="sl2" id="masachmuon">
-                      <option value="" disabled selected>Chọn mã sách</option>
-                    </select>
-                    <br><span class="error" id="msm-error"></span>
-                  </span>
-                </div>
-                <div class="tt">Mã sinh viên: <span class="ip"><input  class="input2" placeholder="Nhập mã sinh viên gồm 9 chữ số" id="masinhvien"><br><span class="error" id="msv-error"></span></span></div>
-                <div class="tt2">Ngày mượn: <span class="ipd1"><input class="datee" type="date" id="ngaymuon"><br><span class="error" id="ngm-error"></span></span></div>
-                <div class="tt2">Ngày trả: <span class="ipd2"><input class="datee" type="date" id="ngaytra"><br><span class="error" id="ngtr-error"></span></span></div>
-                <div class="tt">Số lượng mượn: <span class="ip"><input  class="input2" placeholder="Nhập số lượng sách mượn" id="soluongmuon"><br><span class="error" id="slm-error"></span></span></div>
-                <div class="bt"><button type="button" class="btn btn-outline-danger" id="nut2" onclick="themmt()">Thêm mới</button></div>
-                <span class="sync" onclick="clearinput2()"><i class="fas fa-sync-alt"></i></span>
-             </div>
-             <div class="form-2b">
-              <div class="tts">Danh mục mượn - trả sách</div>
-              <div>
-                <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
-                  <span>
-                    <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemmt">
                   </span>
                   <span style="margin-left: 0.25rem;">
-                    <select class="select2" id="loctg">
-                      <option disabled selected>Lọc theo thời gian</option>
+                    <select class="select3" id="locsl">
+                      <option disabled selected>Lọc theo số lượng</option>
                       <option>Tất cả</option>
-                      <option>Còn hạn</option>
-                      <option>Quá hạn</option>
+                      <option>Còn</option>
+                      <option>Hết</option>
                     </select>
                   </span>
                   <span>
-                    <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemmt()">Tìm kiếm</button></span>
-                    <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txmt()">Tải xuống</button></span>
+                    <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger btn1" onclick="timkiemsach()">Tìm kiếm</button></span>
+                    <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger btn1" onclick="txsach()">Tải xuống</button></span>
                   </span>
-                  
                 </div>
               </div>
               <div>
-                <table class="table2" border="1" cellspacing="0" id="dmmt">
-                  <tr class="header">
-                    <th class="td1">STT</th>
-                    <th class="td2b">Mã phiếu mượn</th>
-                    <th class="td3b">Mã sách</th>
-                    <th class="td4b">Mã sinh viên</th>
-                    <th class="td5b">Ngày mượn</th>
-                    <th class="td6b">Ngày trả</th>
-                    <th class="td7b">SL</th>
-                    <th class="td8b">Thao tác</th>
-                  </tr>
+                <table class="table1" cellspacing="0" id="dms">
+                    <tr>
+                      <th class="td1">STT</th>
+                      <th class="td2">Mã sách</th>
+                      <th class="td3">Tên sách</th>
+                      <th class="td4">Tên tác giả</th>
+                      <th class="td5">Thể loại</th>
+                      <th class="td6">NXB</th>
+                      <th class="td7">SL</th>
+                      <th class="td8">Thao tác</th>
+                    </tr>
                   <tbody>
                     <tr>
-                      <td colspan="8" class="no-data">Không tìm thấy dữ liệu</td>
+                      <td colspan="8">Không tìm thấy dữ liệu</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+              <div id="pagination"></div>
+            </div>
+        </div>
+      </div> 
+      <div id="qlmt" class="tab-pane fade">
+        <div class="form">
+          <div class="form-1b">
+            <div class="tts">Danh mục mượn - trả sách</div>
+            <div class="tt">Mã phiếu mượn: <span class="ip"><input  class="input2" placeholder="Nhập mã phiếu mượn sách gồm 6 kí tự" id="maphieumuon"><br><span class="error" id="mpm-error"></span></span></div>
+            <div class="tt">Mã sách: 
+              <span class="ip">
+                <select class="sl2" id="masachmuon">
+                  <option value="" disabled selected>Chọn mã sách</option>
+                </select>
+                <br><span class="error" id="msm-error"></span>
+              </span>
+            </div>
+            <div class="tt">Mã sinh viên: <span class="ip"><input  class="input2" placeholder="Nhập mã sinh viên gồm 9 chữ số" id="masinhvien"><br><span class="error" id="msv-error"></span></span></div>
+            <div class="tt2">Ngày mượn: <span class="ipd1"><input class="datee" type="date" id="ngaymuon"><br><span class="error" id="ngm-error"></span></span></div>
+            <div class="tt2">Ngày trả: <span class="ipd2"><input class="datee" type="date" id="ngaytra"><br><span class="error" id="ngtr-error"></span></span></div>
+            <div class="tt">Số lượng mượn: <span class="ip"><input  class="input2" placeholder="Nhập số lượng sách mượn" id="soluongmuon"><br><span class="error" id="slm-error"></span></span></div>
+            <div class="bt"><button type="button" class="btn btn-outline-danger" id="nut2" onclick="themmt()">Thêm mới</button></div>
+            <span class="sync" onclick="clearinput2()"><i class="fas fa-sync-alt"></i></span>
+         </div>
+         <div class="form-2b">
+          <div class="tts">Danh mục mượn - trả sách</div>
+          <div>
+            <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
+              <span>
+                <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemmt">
+              </span>
+              <span style="margin-left: 0.25rem;">
+                <select class="select2" id="loctg">
+                  <option disabled selected>Lọc theo thời gian</option>
+                  <option>Tất cả</option>
+                  <option>Còn hạn</option>
+                  <option>Quá hạn</option>
+                </select>
+              </span>
+              <span>
+                <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemmt()">Tìm kiếm</button></span>
+                <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txmt()">Tải xuống</button></span>
+              </span>
+              
+            </div>
+          </div>
+          <div>
+            <table class="table2" border="1" cellspacing="0" id="dmmt">
+              <tr>
+                <th class="td1">STT</th>
+                <th class="td2b">Mã phiếu mượn</th>
+                <th class="td3b">Mã sách</th>
+                <th class="td4b">Mã sinh viên</th>
+                <th class="td5b">Ngày mượn</th>
+                <th class="td6b">Ngày trả</th>
+                <th class="td7b">SL</th>
+                <th class="td8b">Thao tác</th>
+              </tr>
+              <tbody>
+                <tr>
+                  <td colspan="8">Không tìm thấy dữ liệu</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="ls" class="tab-pane fade">
+      <div class="form-2">
+        <div class="tts">Lịch sử mượn - trả sách</div>
+        <div>
+          <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
+            <span>
+              <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemls">
+            </span>
+            <span>
+              <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemls()">Tìm kiếm</button></span>
+              <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txlichsu()">Tải xuống</button></span>
+            </span>
+          </div>
+        </div>
+        <div>
+          <table class="table3" border="1" cellspacing="0" id="lsmt">
+            <tr>
+                <th class="td1">STT</th>
+                <th class="td2b">Mã phiếu mượn</th>
+                <th class="td3b">Mã sách</th>
+                <th class="td4b">Mã sinh viên</th>
+                <th class="td5b">Ngày mượn</th>
+                <th class="td6b">Ngày trả</th>
+                <th class="td7b">SL</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td colspan="7">Không tìm thấy dữ liệu</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="bg"></div>
+    </div> 
+  </div>
+  <footer>
+    <div class="aaa">
+      <div class="footer1">
+        <div class="d1">Thông tin</div>
+        <div class="d2">Website quản lí thư viện sử dụng HTML, CSS & JavaScript</div>
+      </div>
+      <div class="footer2">
+        <div class="d1">Thành Viên</div>
+        <div class="c1">
+          <div class="c2">
+            <div class="d2">
+              <span><i class="fab fa-facebook"></i></span>
+              <span>Nghiêm Xuân Trung - CNTT2 K60</span>             
+            </div>
+            <div class="d2">
+              <span><i class="fab fa-facebook"></i></span>
+              <span>Hà Thanh Tùng - CNTT2 K60</span>
+            </div>
+            <div class="d2">
+              <span><i class="fab fa-facebook"></i></span>
+              <span>Nguyễn Đức Quân - CNTT2 K60</span>
             </div>
           </div>
         </div>
-        <div id="ls" class="tab-pane fade">
-          <div class="form-2">
-            <div class="tts">Lịch sử mượn - trả sách</div>
-            <div>
-              <div class="col" style="text-align: center; margin: -1.5rem 0 1rem 0;">
-                <span>
-                  <input class="input4" placeholder="Tìm kiếm theo Mã phiếu mượn, Mã sách & Mã sinh viên" id="timkiemls">
-                </span>
-                <span>
-                  <span style="margin-left: 0.5rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="timkiemls()">Tìm kiếm</button></span>
-                  <span style="margin-left: 0.25rem;" class="bt"><button type="button" class="btn btn-outline-danger" onclick="txlichsu()">Tải xuống</button></span>
-                </span>
-              </div>
-            </div>
-            <div>
-              <table class="table3" border="1" cellspacing="0" id="lsmt">
-                <tr class="header">
-                    <th class="td1">STT</th>
-                    <th class="td2b">Mã phiếu mượn</th>
-                    <th class="td3b">Mã sách</th>
-                    <th class="td4b">Mã sinh viên</th>
-                    <th class="td5b">Ngày mượn</th>
-                    <th class="td6b">Ngày trả</th>
-                    <th class="td7b">SL</th>
-                </tr>
-                <tbody>
-                  <tr>
-                    <td colspan="7" class="no-data">Không tìm thấy dữ liệu</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div> 
       </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+    </div>
+    <div class="last" style="margin-top: 1rem;">
+      <div class="lastt">Copyright 2020 - Hanoi University of Transport and Communications</div>
+    </div>
+  </footer>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -236,7 +265,6 @@
 <script>
   function loadData()
   {
-    checkNavbar();
     luuDms();
     luuDmmt();
     luuls();
