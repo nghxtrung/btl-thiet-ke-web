@@ -26,6 +26,9 @@ ul li{
 button:focus{
     outline: none;
 }
+.logogtvt{
+    margin-bottom: 2rem;
+}
 
 @media only screen and (max-width: 1024px){
     .navbar-toggler{
@@ -58,7 +61,7 @@ button:focus{
     }
     .header1{
         width: 100%;
-        height: 4.5rem;
+        height: 3.5rem;
     }
     .navbar-toggler{
         position: absolute;
