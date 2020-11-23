@@ -1,10 +1,5 @@
-function xoamt2(id)
+function xoamt3(id)
 {
-    let tableLength = document.getElementById("dmmt").rows.length;
-    for(let i=1;i<tableLength;++i)
-    {
-        document.getElementById("dmmt").rows[i].removeAttribute("onclick");
-    }
     let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     let soluongmuon;
     let masachmuon;
@@ -28,17 +23,55 @@ function xoamt2(id)
     localStorage.setItem('dmmt',JSON.stringify(dmmt));
     luuDmmt();
     clearinput2();
-    document.getElementById('nut2').setAttribute('onclick','themmt()');
+    document.getElementById('nut2').onclick = function() { themmt(); };
+    document.getElementById('nut2').innerHTML = 'Thêm mới';
+}
+
+function xoamt4(id)
+{
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    let kqmt = localStorage.getItem('kqmt') ? JSON.parse(localStorage.getItem('kqmt')) : [];
+    let mpmkt;
+    let sttbd;
+    let soluongmuon;
+    let masachmuon;
+    kqmt.forEach(function(mt,stt)
+    {
+        if(stt===id)
+            mpmkt = mt.mpm;
+    });
+    dmmt.forEach(function(mt,stt)
+    {
+        if(mpmkt===mt.mpm)
+        {
+            sttbd = stt;
+            masachmuon = mt.msm;
+            soluongmuon = Number(`${mt.slm}`);
+        }
+    });
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    dms.forEach(function(sach)
+    {
+        if(masachmuon === sach.ms)
+        {
+            sach.sl = Number(`${sach.sl}`);
+            sach.sl += soluongmuon;
+            localStorage.setItem('dms',JSON.stringify(dms));
+            luuDms();
+        }
+    });
+    dmmt.splice(sttbd,1);
+    kqmt.splice(id,1);
+    localStorage.setItem('dmmt',JSON.stringify(dmmt));
+    localStorage.setItem('kqmt',JSON.stringify(kqmt));
+    luuDmmt2();
+    clearinput2();
+    document.getElementById('nut2').onclick = function() { themmt(); };
     document.getElementById('nut2').innerHTML = 'Thêm mới';
 }
 
 function trasach(id)
 {
-    let tableLength = document.getElementById("dmmt").rows.length;
-    for(let i=1;i<tableLength;++i)
-    {
-        document.getElementById("dmmt").rows[i].removeAttribute("onclick");
-    }
     let check = confirm("Bạn có chắc chắn muốn trả sách?");
     if(check)
     {
@@ -63,11 +96,58 @@ function trasach(id)
         });
         localStorage.setItem('ls',JSON.stringify(ls));
         luuls();
-        xoamt2(id);
+        xoamt3(id);
     }
     else
     {
         luuDmmt();
+        clearinput2();
+        document.getElementById('nut2').setAttribute('onclick','themmt()');
+        document.getElementById('nut2').innerHTML = 'Thêm mới';
+    }
+}
+
+function trasach2(id)
+{
+    let check = confirm("Bạn có chắc chắn muốn trả sách?");
+    if(check)
+    {
+        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+        let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+        let kqmt = localStorage.getItem('kqmt') ? JSON.parse(localStorage.getItem('kqmt')) : [];
+        let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
+        let mpmkt;
+        let sttbd;
+        let soluongmuon;
+        let masachmuon;
+        kqmt.forEach(function(mt,stt)
+        {
+            if(stt===id)
+                mpmkt = mt.mpm;
+        });
+        dmmt.forEach(function(mt)
+        {
+            if(mpmkt===mt.mpm)
+            {
+                ls.push(mt);
+                dms.forEach(function(sach)
+                {
+                    if(mt.msm===sach.ms)
+                    {
+                        mt.slm = new Number(`${mt.slm}`);
+                        sach.sl = new Number(`${sach.sl}`);
+                        sach.sl += mt.slm;
+                    }
+                });
+            }
+        });
+        localStorage.setItem('ls',JSON.stringify(ls));
+        luuls();
+        xoamt4(id);
+    }
+    else
+    {
+        luuDmmt2();
         clearinput2();
         document.getElementById('nut2').setAttribute('onclick','themmt()');
         document.getElementById('nut2').innerHTML = 'Thêm mới';
@@ -79,12 +159,12 @@ function luuls()
     let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
     let bangls = `<tr class="header">
     <th class="td1">STT</th>
-    <th class="td2b">Mã phiếu mượn</th>
-    <th class="td3b">Mã sách</th>
-    <th class="td4b">Mã sinh viên</th>
-    <th class="td5b">Ngày mượn</th>
-    <th class="td6b">Ngày trả</th>
-    <th class="td7b">SL</th>
+    <th class="td2">Mã phiếu mượn</th>
+    <th class="td3">Mã sách</th>
+    <th class="td4">Mã sinh viên</th>
+    <th class="td5">Ngày mượn</th>
+    <th class="td6">Ngày trả</th>
+    <th class="td7">SL</th>
     </tr>`;
     if(ls.length === 0)
     {

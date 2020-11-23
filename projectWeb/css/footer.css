@@ -1,0 +1,53 @@
+footer{
+    background-color: #feef78;
+    width: 100%;
+    margin-top: 9rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+.footer1{
+    width: 50%;
+    color: #271756;
+    margin-left: 10%;
+}
+.footer2{
+    width: 50%;
+    color: #271756;
+    margin-left: 22%;
+}
+.d1{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+.d2{
+    font-size: 1.2rem;
+    font-weight: 450;
+}
+.fa-facebook{
+    font-size: 1.5rem;
+    margin-right: 0.25rem;
+}
+.last{
+    border-top: 1px solid #271756;
+    width: 90%;
+    margin: auto;
+}
+.lastt{
+    padding-top: 0.5rem;
+    color: #271756;
+    font-weight: bold;
+    text-align: center;
+}
+.aaa{
+    display: flex;
+}
+.c1{
+    display: block;
+}
+.c2{
+    text-align: justify;
+}
+i.fab.fa-facebook{
+    color: #271756;
+}
