@@ -300,8 +300,14 @@ tr th{
 #lsmt tbody tr:nth-child(odd){
     background-color: #d4d4d4;
 }
-#dms tbody tr:hover td,
-#dmmt tbody tr:hover td{
+#dms tbody tr:hover td.td1,
+#dms tbody tr:hover td.td2,
+#dms tbody tr:hover td.td3,
+#dms tbody tr:hover td.td4,
+#dms tbody tr:hover td.td5,
+#dms tbody tr:hover td.td6,
+#dms tbody tr:hover td.td7,
+#dms tbody tr:hover td.td8{
     cursor: pointer;
     background-color: #c5c4c4;
     color: #4000ff;
