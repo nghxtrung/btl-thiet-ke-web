@@ -214,6 +214,7 @@ function xoamt(id)
         clearinput2();
         document.getElementById('nut2').onclick = function() { themmt(); };
         document.getElementById('nut2').innerHTML = 'Thêm mới';
+        resetStyleElement2();
     }
     else
     {
@@ -267,6 +268,7 @@ function xoamt2(id)
         clearinput2();
         document.getElementById('nut2').onclick = function() { themmt(); };
         document.getElementById('nut2').innerHTML = 'Thêm mới';
+        resetStyleElement2();
     }
     else
     {
@@ -274,6 +276,78 @@ function xoamt2(id)
         document.getElementById('nut2').onclick = function() { themmt(); };
         document.getElementById('nut2').innerHTML = 'Thêm mới';
     }
+}
+
+function xoamt3(id)
+{
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    let soluongmuon;
+    let masachmuon;
+    dmmt.forEach(function(mt)
+    {
+        masachmuon = mt.msm;
+        soluongmuon = Number(`${mt.slm}`);
+    });
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    dms.forEach(function(sach)
+    {
+        if(masachmuon === sach.ms)
+        {
+            sach.sl = Number(`${sach.sl}`);
+            sach.sl += soluongmuon;
+            localStorage.setItem('dms',JSON.stringify(dms));
+            luuDms();
+        }
+    });
+    dmmt.splice(id,1);
+    localStorage.setItem('dmmt',JSON.stringify(dmmt));
+    luuDmmt();
+    clearinput2();
+    document.getElementById('nut2').onclick = function() { themmt(); };
+    document.getElementById('nut2').innerHTML = 'Thêm mới';
+}
+
+function xoamt4(id)
+{
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+    let kqmt = localStorage.getItem('kqmt') ? JSON.parse(localStorage.getItem('kqmt')) : [];
+    let mpmkt;
+    let sttbd;
+    let soluongmuon;
+    let masachmuon;
+    kqmt.forEach(function(mt,stt)
+    {
+        if(stt===id)
+            mpmkt = mt.mpm;
+    });
+    dmmt.forEach(function(mt,stt)
+    {
+        if(mpmkt===mt.mpm)
+        {
+            sttbd = stt;
+            masachmuon = mt.msm;
+            soluongmuon = Number(`${mt.slm}`);
+        }
+    });
+    let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+    dms.forEach(function(sach)
+    {
+        if(masachmuon === sach.ms)
+        {
+            sach.sl = Number(`${sach.sl}`);
+            sach.sl += soluongmuon;
+            localStorage.setItem('dms',JSON.stringify(dms));
+            luuDms();
+        }
+    });
+    dmmt.splice(sttbd,1);
+    kqmt.splice(id,1);
+    localStorage.setItem('dmmt',JSON.stringify(dmmt));
+    localStorage.setItem('kqmt',JSON.stringify(kqmt));
+    luuDmmt2();
+    clearinput2();
+    document.getElementById('nut2').onclick = function() { themmt(); };
+    document.getElementById('nut2').innerHTML = 'Thêm mới';
 }
 
 function suamt(id)
@@ -627,8 +701,94 @@ function capnhatmt2(id)
     }
 }
 
+function trasach(id)
+{
+    let check = confirm("Bạn có chắc chắn muốn trả sách?");
+    if(check)
+    {
+        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+        let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+        let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
+        dmmt.forEach(function(mt,stt)
+        {
+            if(id===stt)
+            {
+                ls.push(mt);
+                dms.forEach(function(sach)
+                {
+                    if(mt.msm===sach.ms)
+                    {
+                        mt.slm = new Number(`${mt.slm}`);
+                        sach.sl = new Number(`${sach.sl}`);
+                        sach.sl += mt.slm;
+                    }
+                });
+            }
+        });
+        localStorage.setItem('ls',JSON.stringify(ls));
+        luuls();
+        xoamt3(id);
+        resetStyleElement2();
+    }
+    else
+    {
+        luuDmmt();
+        clearinput2();
+        document.getElementById('nut2').setAttribute('onclick','themmt()');
+        document.getElementById('nut2').innerHTML = 'Thêm mới';
+    }
+}
+
+function trasach2(id)
+{
+    let check = confirm("Bạn có chắc chắn muốn trả sách?");
+    if(check)
+    {
+        let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
+        let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
+        let kqmt = localStorage.getItem('kqmt') ? JSON.parse(localStorage.getItem('kqmt')) : [];
+        let ls = localStorage.getItem('ls') ? JSON.parse(localStorage.getItem('ls')) : [];
+        let mpmkt;
+        kqmt.forEach(function(mt,stt)
+        {
+            if(stt===id)
+                mpmkt = mt.mpm;
+        });
+        dmmt.forEach(function(mt)
+        {
+            if(mpmkt===mt.mpm)
+            {
+                ls.push(mt);
+                dms.forEach(function(sach)
+                {
+                    if(mt.msm===sach.ms)
+                    {
+                        mt.slm = new Number(`${mt.slm}`);
+                        sach.sl = new Number(`${sach.sl}`);
+                        sach.sl += mt.slm;
+                    }
+                });
+            }
+        });
+        localStorage.setItem('ls',JSON.stringify(ls));
+        luuls();
+        xoamt4(id);
+        resetStyleElement2();
+    }
+    else
+    {
+        luuDmmt2();
+        clearinput2();
+        document.getElementById('nut2').setAttribute('onclick','themmt()');
+        document.getElementById('nut2').innerHTML = 'Thêm mới';
+    }
+}
+
 function timkiemmt()
 {
+    clearinput2();
+    resetForm2();
+    resetStyleElement2();
     let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     if(dmmt.length===0)
     {
@@ -762,6 +922,7 @@ function thoigianhientai()
 
 function txmt()
 {
+    resetStyleElement2();
     let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     if(dmmt.length===0)
     {

@@ -138,6 +138,18 @@ function formatTime2(timeString)
     return newTime;
 }
 
+function resetForm()
+{
+    document.getElementById('nut1').onclick = function() { themsach(); }
+    document.getElementById('nut1').innerHTML = 'Thêm mới';
+}
+
+function resetForm2()
+{
+    document.getElementById('nut2').onclick = function() { themmt(); }
+    document.getElementById('nut2').innerHTML = 'Thêm mới';
+}
+
 function clearinput1()
 {
     document.getElementById('masach').value = '';

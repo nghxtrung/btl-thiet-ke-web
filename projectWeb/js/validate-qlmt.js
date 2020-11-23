@@ -10,9 +10,11 @@ inputMSV.onblur = function() { validateMSV(); }
 inputNGM.onblur = function() { validateNGM(); }
 inputNGTR.onblur = function() { validateNGTR(); }
 inputSLM.onblur = function() { validateSLM(); }
-inputMSM.onchange = function() { checkDuplicate(); }
+inputMSM.onchange = function() { validateMSM(); }
+inputMSV.onchange = function() { checkDuplicate(); }
 inputNGM.onchange = function() { validateNGM(); }
 inputNGTR.onchange = function() { validateNGTR(); }
+inputMSM.addEventListener("onchange",checkDuplicate);
 inputMSV.addEventListener("onchange",checkDuplicate);
 inputNGM.addEventListener("onchange",checkDuplicate);
 inputNGTR.addEventListener("onchange",checkDuplicate);
@@ -206,6 +208,7 @@ function validateMPM3(id)
 
 function validateMSM()
 {
+    let dmmt = localStorage.getItem('dmmt') ? JSON.parse(localStorage.getItem('dmmt')) : [];
     let masachmuon = document.getElementById('masachmuon').value;
     if(isEmpty(masachmuon))
     {
@@ -216,7 +219,7 @@ function validateMSM()
     }
     else
     {
-        if(checkDuplicate())
+        if(dmmt.length===0)
         {
             document.getElementById('masachmuon').classList.remove('invalid');
             document.getElementById('masachmuon').classList.add('valid');
@@ -224,7 +227,20 @@ function validateMSM()
             return true;
         }
         else
-            return false;
+        {
+            document.getElementById('masachmuon').classList.remove('invalid');
+            document.getElementById('masachmuon').classList.add('valid');
+            document.getElementById('msm-error').innerHTML = '';
+            if(checkDuplicate())
+            {
+                document.getElementById('masachmuon').classList.remove('invalid');
+                document.getElementById('masachmuon').classList.add('valid');
+                document.getElementById('msm-error').innerHTML = '';
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
 
@@ -240,6 +256,9 @@ function validateMSM2(id)
     }
     else
     {
+        document.getElementById('masachmuon').classList.remove('invalid');
+        document.getElementById('masachmuon').classList.add('valid');
+        document.getElementById('msm-error').innerHTML = '';
         if(checkDuplicate2(id))
         {
             document.getElementById('masachmuon').classList.remove('invalid');
@@ -264,6 +283,9 @@ function validateMSM3(id)
     }
     else
     {
+        document.getElementById('masachmuon').classList.remove('invalid');
+        document.getElementById('masachmuon').classList.add('valid');
+        document.getElementById('msm-error').innerHTML = '';
         if(checkDuplicate3(id))
         {
             document.getElementById('masachmuon').classList.remove('invalid');
@@ -412,14 +434,14 @@ function validateNGM()
         if(dmmt.length===0)
         {
             document.getElementById('ngaymuon').classList.remove('invalid');
-            document.getElementById('ngaymuon').classList.remove('valid');
+            document.getElementById('ngaymuon').classList.add('valid');
             document.getElementById('ngm-error').innerHTML = '';
             return true;
         }
         else
         {
             document.getElementById('ngaymuon').classList.remove('invalid');
-            document.getElementById('ngaymuon').classList.remove('valid');
+            document.getElementById('ngaymuon').classList.add('valid');
             document.getElementById('ngm-error').innerHTML = '';
             if(checkDuplicate())
             {
@@ -448,7 +470,7 @@ function validateNGM2(id)
     else
     {
         document.getElementById('ngaymuon').classList.remove('invalid');
-        document.getElementById('ngaymuon').classList.remove('valid');
+        document.getElementById('ngaymuon').classList.add('valid');
         document.getElementById('ngm-error').innerHTML = '';
         if(checkDuplicate2(id))
         {
@@ -476,7 +498,7 @@ function validateNGM3(id)
     else
     {
         document.getElementById('ngaymuon').classList.remove('invalid');
-        document.getElementById('ngaymuon').classList.remove('valid');
+        document.getElementById('ngaymuon').classList.add('valid');
         document.getElementById('ngm-error').innerHTML = '';
         if(checkDuplicate3(id))
         {
@@ -516,14 +538,14 @@ function validateNGTR()
         if(dmmt.length===0)
         {
             document.getElementById('ngaytra').classList.remove('invalid');
-            document.getElementById('ngaytra').classList.remove('valid');
+            document.getElementById('ngaytra').classList.add('valid');
             document.getElementById('ngtr-error').innerHTML = '';
             return true;
         }
         else
         {
             document.getElementById('ngaytra').classList.remove('invalid');
-            document.getElementById('ngaytra').classList.remove('valid');
+            document.getElementById('ngaytra').classList.add('valid');
             document.getElementById('ngtr-error').innerHTML = '';
             if(checkDuplicate())
             {
@@ -561,7 +583,7 @@ function validateNGTR2(id)
     else
     {
         document.getElementById('ngaytra').classList.remove('invalid');
-        document.getElementById('ngaytra').classList.remove('valid');
+        document.getElementById('ngaytra').classList.add('valid');
         document.getElementById('ngtr-error').innerHTML = '';
         if(checkDuplicate2(id))
         {
@@ -598,7 +620,7 @@ function validateNGTR3(id)
     else
     {
         document.getElementById('ngaytra').classList.remove('invalid');
-        document.getElementById('ngaytra').classList.remove('valid');
+        document.getElementById('ngaytra').classList.add('valid');
         document.getElementById('ngtr-error').innerHTML = '';
         if(checkDuplicate3(id))
         {
@@ -739,9 +761,6 @@ function validateSLM2(id)
 function checkSL()
 {
     let soluongmuon = document.getElementById('soluongmuon').value;
-    document.getElementById('masachmuon').classList.remove('invalid');
-    document.getElementById('masachmuon').classList.remove('valid');
-    document.getElementById('msm-error').innerHTML = '';
     if(!isEmpty(soluongmuon))
         validateSLM();
 }
@@ -749,9 +768,6 @@ function checkSL()
 function checkSL2(id)
 {
     let soluongmuon = document.getElementById('soluongmuon').value;
-    document.getElementById('masachmuon').classList.remove('invalid');
-    document.getElementById('masachmuon').classList.remove('valid');
-    document.getElementById('msm-error').innerHTML = '';
     if(!isEmpty(soluongmuon))
         validateSLM2(id);
 }

@@ -197,6 +197,7 @@ function xoasach(id)
             clearinput1();
             document.getElementById('nut1').onclick = function() { themsach(); };
             document.getElementById('nut1').innerHTML = 'Thêm mới';
+            resetStyleElement();
         }
         else
         {
@@ -247,6 +248,7 @@ function xoasach2(id)
             clearinput1();
             document.getElementById('nut1').onclick = function() { themsach(); };
             document.getElementById('nut1').innerHTML = 'Thêm mới';
+            resetStyleElement();
         }
         else
         {
@@ -480,6 +482,9 @@ function capnhatsach2(id)
 
 function timkiemsach()
 {
+    clearinput1();
+    resetForm();
+    resetStyleElement();
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
     if(dms.length===0)
     {
@@ -637,6 +642,9 @@ function thoigianhientai()
 
 function txsach()
 {
+    clearinput1();
+    resetForm();
+    resetStyleElement();
     let dms = localStorage.getItem('dms') ? JSON.parse(localStorage.getItem('dms')) : [];
     if(dms.length===0)
     {

@@ -313,3 +313,16 @@ tr th{
     color: #4000ff;
     transition: 0.5s;
 }
+#dmmt tbody tr:hover td.td1,
+#dmmt tbody tr:hover td.td2,
+#dmmt tbody tr:hover td.td3,
+#dmmt tbody tr:hover td.td4,
+#dmmt tbody tr:hover td.td5,
+#dmmt tbody tr:hover td.td6,
+#dmmt tbody tr:hover td.td7,
+#dmmt tbody tr:hover td.td8{
+    cursor: pointer;
+    background-color: #c5c4c4;
+    color: #4000ff;
+    transition: 0.5s;
+}
